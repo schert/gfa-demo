@@ -1,0 +1,70 @@
+server:
+  port: 9090
+  
+uri.test: http://127.0.0.1:8081
+  
+spring:
+  application:    name: gfa-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: TEST-SERVICES
+          uri: ${uri.test}
+          predicates:
+            - Path=/test/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: myCircuitBreaker
+                fallbackuri: forward:/entiServicesFallBack
+                
+resilience4j.circuitbreaker:
+    configs:
+        default:
+            slidingWindowSize: 100
+            permittedNumberOfCallsInHalfOpenState: 10
+            waitDurationInOpenState: 10000
+            failureRateThreshold: 60
+            eventConsumerBufferSize: 10
+            registerHealthIndicator: true
+    instances:
+        myCircuitBreaker:
+            baseConfig: default
+            waitDurationInOpenState: 5000
+            
+resilience4j.retry:
+    instances:
+        myCircuitBreaker:
+            maxAttempts: 3
+            waitDuration: 10s
+            enableExponentialBackoff: true
+            exponentialBackoffMultiplier: 2
+#            retryExceptions:
+#                - org.springframework.web.client.HttpServerErrorException
+#                - java.io.IOException
+#            ignoreExceptions:
+#                - io.github.robwin.exception.BusinessException
+                
+resilience4j.bulkhead:
+    instances:
+        myCircuitBreaker:
+            maxWaitDuration: 10ms
+            maxConcurrentCalls: 20
+            
+resilience4j.timelimiter:
+    instances:
+        myCircuitBreaker:
+            timeoutDuration: 8s
+            cancelRunningFuture: true
+           
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: TRACE
+#        cloud:
+#          gateway:
+#            filter:
+#              factory: TRACE
