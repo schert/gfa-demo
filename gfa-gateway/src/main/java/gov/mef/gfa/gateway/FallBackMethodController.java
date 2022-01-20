@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FallBackMethodController {
 	
-	@GetMapping("entiServicesFallBack")
+	@GetMapping("testFallBack")
 	@ResponseStatus(HttpStatus.BAD_GATEWAY)
 	private GatewayError entiServicesFallBackMethod() {
 		return new GatewayError(HttpStatus.BAD_GATEWAY, "Il servizio sta impiegando più tempo del previsto. Prova più tardi.");
