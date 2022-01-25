@@ -1,8 +1,10 @@
 package com.example.gfaBe.config;
 
-//@Repository
-//public interface TestRepository extends JpaRepository<Test, Long> {
-//}
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TestRepository {
+import com.example.gfaBe.model.Test;
+
+@Repository
+public interface TestRepository extends JpaRepository<Test, Long> {
 }

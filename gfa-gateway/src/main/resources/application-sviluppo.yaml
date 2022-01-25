@@ -1,10 +1,11 @@
 server:
   port: 9090
-  
+
 uri.test: http://127.0.0.1:8081
 
 spring:
-  application:    name: gfa-gateway
+  application:
+    name: gfa-gateway
   cloud:
     gateway:
       routes:
@@ -17,7 +18,7 @@ spring:
               args:
                 name: GfaCircuitBreaker
                 fallbackuri: forward:/testFallBack
-            
+                
 resilience4j.timelimiter:
     instances:
         GfaCircuitBreaker:

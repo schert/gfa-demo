@@ -2,6 +2,7 @@ package com.example.gfaBe.controller;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -9,8 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.gfaBe.bean.InputBean;
+import com.example.gfaBe.config.TestRepository;
+import com.example.gfaBe.model.Test;
 
 import gov.mef.gfa.common.gfacommon.GfaClient;
 import io.swagger.annotations.ApiOperation;
@@ -19,8 +26,8 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/v1")
 public class TestController {
 
-//	@Autowired
-//	private TestRepository userRepository;
+	@Autowired
+	private TestRepository userRepository;
 	
 	Logger logger = LoggerFactory.getLogger(TestController.class);
 
@@ -29,14 +36,24 @@ public class TestController {
 	 *
 	 * @return the list
 	 */
-//	@GetMapping("/tests")
-//	@ApiOperation(value = "get all", notes = "test call")
-//	public List<Test> getAllTests() {
-//		// Only for test! Respect: controller -> service -> model -> dao
-//		
-//		logger.info("Call: getAllTests");
-//		return userRepository.findAll();
-//	}
+	@GetMapping("/tests")
+	@ApiOperation(value = "get all", notes = "test call")
+	public List<Test> getAllTests() {
+		// Only for test! Respect: controller -> service -> model -> dao
+		
+		logger.info("Call: getAllTests");
+		return userRepository.findAll();
+	}
+	
+	@PostMapping("/setTest")
+	@ApiOperation(value = "set test", notes = "set test call")
+	public Test setTest(@RequestBody InputBean valore) {
+		// Only for test! Respect: controller -> service -> model -> dao
+		
+		logger.info("Call: getAllTests");
+		Test test = new Test(valore.getValue(), valore.getValue());
+		return userRepository.save(test);
+	}
 	
 	@Autowired
 	@Qualifier("1")
