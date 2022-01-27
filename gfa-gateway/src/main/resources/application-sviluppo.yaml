@@ -12,7 +12,7 @@ spring:
         - id: TEST-SERVICES
           uri: ${uri.test}
           predicates:
-            - Path=/test/**
+            - Path=/anagrafiche/**
           filters:
             - name: CircuitBreaker
               args:

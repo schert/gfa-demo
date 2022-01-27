@@ -10,7 +10,7 @@
 
     <modules>
         <module>gfa-common</module>
-        <module>gfa-be</module>
+        <module>gfa-anagrafiche</module>
         <module>gfa-gateway</module>
         <module>gfa-gestionale</module>
     </modules>

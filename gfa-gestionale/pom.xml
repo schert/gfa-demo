@@ -9,7 +9,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>it.gov.mef.gfa.gestionale</groupId>
+	<groupId>gov.mef.gfa.gestionale</groupId>
 	<artifactId>gfa-gestionale</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
@@ -117,6 +117,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>gov.mef.gfa.common</groupId>
+			<artifactId>gfa-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
