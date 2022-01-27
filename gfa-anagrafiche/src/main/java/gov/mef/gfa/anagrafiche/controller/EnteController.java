@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.mef.gfa.anagrafiche.bean.EnteRes;
 import gov.mef.gfa.anagrafiche.excepltion.ServiceException;
 import gov.mef.gfa.anagrafiche.service.impl.EnteServiceImpl;
-import gov.mef.gfa.common.gfacommon.GfaClient;
 import gov.mef.gfa.common.gfacommon.bean.StatusRes;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/${api.name}/v1")
+@RequestMapping("/${path-name.ente}/${api-tag}/v1")
 public class EnteController {
 
 	@Autowired
@@ -49,17 +47,11 @@ public class EnteController {
 		}
 	}
 	
-	@Autowired
-	@Qualifier("1")
-	GfaClient GfaClientImpl2;
-	
 	@GetMapping("/mapTest")
 	@ApiOperation(value = "line chart", notes = "get line chart value")
 	public Map<Integer, Double> getLineChartMapvalue() throws IOException{
 		
 		logger.info("Call: getMap");
-		
-		logger.info(GfaClientImpl2.test());
 		
 		Map<Integer, Double> map = new LinkedHashMap<>();
 		map.put(1, 5.20);

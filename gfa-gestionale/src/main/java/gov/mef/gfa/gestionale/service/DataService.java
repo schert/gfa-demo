@@ -20,15 +20,12 @@ public class DataService {
 
 	@Autowired
 	private WebClient.Builder webclientBuilder;
-	
-	@Value("${gateway.host}")
-	private String hostTest;
 
 	public Map<Integer, Double> getLineChartData() {
 
-		logger.info("Call getLineChartData: " + hostTest + "/test/api/v1/mapTest");
+		logger.info("Controller: {} Method: getLineChartData", DataService.class);
 
-		Map<Integer, Double> map = webclientBuilder.build().get().uri(hostTest + "/test/api/v1/mapTest").retrieve()
+		Map<Integer, Double> map = webclientBuilder.build().get().uri(Routes.ANAGRAFICA_TEST).retrieve()
 				.bodyToMono(new ParameterizedTypeReference<Map<Integer, Double>>() {
 				}).block();
 

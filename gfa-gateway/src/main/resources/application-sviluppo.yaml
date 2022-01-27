@@ -9,7 +9,7 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: TEST-SERVICES
+        - id: GFA-ANAGRAFICHE
           uri: ${uri.test}
           predicates:
             - Path=/anagrafiche/**

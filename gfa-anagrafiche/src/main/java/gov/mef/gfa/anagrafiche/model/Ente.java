@@ -10,9 +10,6 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * The type Ente.
- */
 @Entity
 @Table(name = "ENTE")
 @Data
