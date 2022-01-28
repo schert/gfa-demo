@@ -10,7 +10,7 @@
 #      naming:
 #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 #      ddl-auto: update
-#    show-sql: true
+#    show-sql: false
 #    properties:
 #      hibernate:
 #        format_sql: true

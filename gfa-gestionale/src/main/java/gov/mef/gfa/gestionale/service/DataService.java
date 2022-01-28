@@ -19,13 +19,13 @@ public class DataService {
 	private Logger logger = LoggerFactory.getLogger(DataService.class);
 
 	@Autowired
-	private WebClient.Builder webclientBuilder;
+	private WebClient.Builder webClientBuilder;
 
 	public Map<Integer, Double> getLineChartData() {
 
 		logger.info("Controller: {} Method: getLineChartData", DataService.class);
 
-		Map<Integer, Double> map = webclientBuilder.build().get().uri(Routes.ANAGRAFICA_TEST_ENTE.getPath()).retrieve()
+		Map<Integer, Double> map = webClientBuilder.build().get().uri(Routes.ANAGRAFICA_TEST_ENTE.getPath()).retrieve()
 				.bodyToMono(new ParameterizedTypeReference<Map<Integer, Double>>() {
 				}).block();
 
@@ -35,6 +35,6 @@ public class DataService {
 	public EnteRes getEnteById(Integer id) {
 		logger.info("Controller: {} Method: getEnteById", DataService.class);
 		
-		return GfaClient.getPathParams(webclientBuilder, EnteRes.class, Routes.ANAGRAFICA_ENTE, new Object[] {id});
+		return GfaClient.apiCallGetPathParams(webClientBuilder, EnteRes.class, Routes.ANAGRAFICA_ENTE, new Object[] {id});
 	}
 }
