@@ -17,8 +17,14 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name="BEN_BENEFICIARIO")
+@SequenceGenerator(name = "seqid-gen", sequenceName = "BEN_BENEFICIARIO_SEQ", initialValue = 1, allocationSize = 1)
 public class BenBeneficiario implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seqid-gen")
+	@Column(nullable=false)
+	private BigDecimal idbeneficiario;
 
 	@Column(length=16)
 	private String codicefiscale;
@@ -28,11 +34,6 @@ public class BenBeneficiario implements Serializable {
 
 	@Column(length=20)
 	private String fax;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable=false)
-	private BigDecimal idbeneficiario;
 
 	@Column(length=200)
 	private String indirizzo;
