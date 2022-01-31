@@ -94,13 +94,13 @@ class GfaBeApplicationTests {
 
 			benBeneficiario = benBeneficiarioDao.findByIdbeneficiario(benBeneficiario.getIdbeneficiario());
 
-			Assert.isTrue(benBeneficiario != null, "Nessun interesse creato");
+			Assert.isTrue(benBeneficiario != null, "Nessun benBeneficiario creato");
 
 			benBeneficiarioDao.delete(benbene);
 
 			benBeneficiario = benBeneficiarioDao.findByIdbeneficiario(benBeneficiario.getIdbeneficiario());
 
-			Assert.isTrue(benBeneficiario == null, "Interesse non canellato");
+			Assert.isTrue(benBeneficiario == null, "BenBeneficiario non canellato");
 
 		} catch (Exception e) {
 			e.printStackTrace();
