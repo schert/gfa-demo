@@ -1,5 +1,6 @@
 package gov.mef.gfa.anagrafiche.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name="BEN_SETTORE")
-public class BenSettore {
+public class BenSettore  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id

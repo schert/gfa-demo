@@ -1,12 +1,13 @@
 package gov.mef.gfa.anagrafiche.model;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -16,14 +17,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name="RIPARTIZIONEGEOGRAFICA")
-public class RipartizioneGeografica {
+public class RipartizioneGeografica implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(length=6)
 	private String ripartizione;
 	
 	@Id
-	@Column(length=10)
-	private String codregione;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "codregione")
+	private Regione codregione;
 
 }

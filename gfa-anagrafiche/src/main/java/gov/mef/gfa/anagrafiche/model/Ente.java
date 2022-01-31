@@ -1,5 +1,7 @@
 package gov.mef.gfa.anagrafiche.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "ENTE")
 @Data
 @NoArgsConstructor
-public class Ente {
+public class Ente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
