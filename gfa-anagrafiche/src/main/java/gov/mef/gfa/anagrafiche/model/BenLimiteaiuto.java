@@ -28,8 +28,9 @@ public class BenLimiteaiuto implements Serializable {
 	@Column(nullable=false)
 	private BigDecimal idlimiteaiuto;
 
-	@Column(nullable=false)
-	private BigDecimal idsettore;
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idsettore")
+	private BenSettore idsettore;
 
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idtipoaiuto")

@@ -9,13 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name="BEN_STORICOSETTORE")
 public class BenStoricoSettore {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable=false)
 	private BigDecimal idbeneficiario;
 	
@@ -27,37 +31,5 @@ public class BenStoricoSettore {
 
 	@Column(nullable=false, precision=4)
 	private BigDecimal annocompetenzaa;
-
-	public BigDecimal getIdbeneficiario() {
-		return idbeneficiario;
-	}
-
-	public void setIdbeneficiario(BigDecimal idbeneficiario) {
-		this.idbeneficiario = idbeneficiario;
-	}
-
-	public String getIdsettore() {
-		return idsettore;
-	}
-
-	public void setIdsettore(String idsettore) {
-		this.idsettore = idsettore;
-	}
-
-	public BigDecimal getAnnocompetenzada() {
-		return annocompetenzada;
-	}
-
-	public void setAnnocompetenzada(BigDecimal annocompetenzada) {
-		this.annocompetenzada = annocompetenzada;
-	}
-
-	public BigDecimal getAnnocompetenzaa() {
-		return annocompetenzaa;
-	}
-
-	public void setAnnocompetenzaa(BigDecimal annocompetenzaa) {
-		this.annocompetenzaa = annocompetenzaa;
-	}
 	
 }
