@@ -1,5 +1,7 @@
 package gov.mef.gfa.anagrafiche.service.impl;
 
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class EnteServiceImpl implements EnteService {
 	EnteDao enteRepository;	
 	private Logger logger = LoggerFactory.getLogger(EnteServiceImpl.class);
 	
-	public EnteRes getEnteById(Integer id) throws ServiceException {
+	public EnteRes getEnteById(BigDecimal id) throws ServiceException {
 		
 		logger.info("Controller: {} Method: getEnteById", EnteController.class);
 		

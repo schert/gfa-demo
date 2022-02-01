@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import gov.mef.gfa.common.Routes;
-import gov.mef.gfa.common.gfacommon.client.GfaClient;
+import gov.mef.gfa.common.client.GfaClient;
 import gov.mef.gfa.gestionale.model.EnteRes;
 
 @Service

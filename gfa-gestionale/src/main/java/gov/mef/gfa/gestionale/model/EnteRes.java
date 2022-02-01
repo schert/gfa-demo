@@ -1,6 +1,6 @@
 package gov.mef.gfa.gestionale.model;
 
-import gov.mef.gfa.common.gfacommon.bean.ApiResponse;
+import gov.mef.gfa.common.bean.ApiResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

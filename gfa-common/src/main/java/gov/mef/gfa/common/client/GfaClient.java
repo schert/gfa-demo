@@ -1,4 +1,4 @@
-package gov.mef.gfa.common.gfacommon.client;
+package gov.mef.gfa.common.client;
 
 import org.springframework.web.reactive.function.client.WebClient;
 

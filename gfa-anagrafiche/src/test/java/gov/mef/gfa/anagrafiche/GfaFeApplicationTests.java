@@ -17,7 +17,6 @@ import gov.mef.gfa.anagrafiche.model.BenSettore;
 import gov.mef.gfa.anagrafiche.model.BenStoricoSettore;
 import gov.mef.gfa.anagrafiche.model.Convenzioni;
 import gov.mef.gfa.anagrafiche.model.Interessi;
-import gov.mef.gfa.anagrafiche.model.InteressiPK;
 
 @SpringBootTest(classes = GfaAnagraficheApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class GfaBeApplicationTests {
@@ -66,7 +65,7 @@ class GfaBeApplicationTests {
 		try {
 			Convenzioni con = new Convenzioni();
 			Attivita attivita = new Attivita();
-			attivita.setIdattivita(new BigDecimal(1));
+			
 			attivita.setAnnocompetenza(new BigDecimal(2022));
 			attivita.setStanziamentoiniziale(new BigDecimal(202200));
 			con.setAttivita(attivita);
@@ -102,24 +101,24 @@ class GfaBeApplicationTests {
 			Interessi inter = new Interessi();
 			inter.setCapitaleinvestito(new BigDecimal(10));
 			inter.setImporto(new BigDecimal(50));
-			Attivita attivita = new Attivita();
-			attivita.setIdattivita(new BigDecimal(2));
-			attivita.setAnnocompetenza(new BigDecimal(2022));
-			attivita.setStanziamentoiniziale(new BigDecimal(30200));			
-			InteressiPK id = new InteressiPK(attivita, new BigDecimal(2));
-			inter.setInteressiPK(id);
 			inter.setModificato(new BigDecimal(1));
 			inter.setNote("note");
+			inter.setIdtipologia(new BigDecimal(50));
+			
+			Attivita attivita = new Attivita();
+			attivita.setAnnocompetenza(new BigDecimal(2022));
+			attivita.setStanziamentoiniziale(new BigDecimal(30200));
+			inter.setAttivita(attivita);
 
 			Interessi interesse = interessiDao.save(inter);
 
-			interesse = interessiDao.findByInteressiPK(id);
+			interesse = interessiDao.findById(interesse.getId());
 
 			Assert.isTrue(interesse != null, "Nessun interesse creato");
 
 			interessiDao.delete(inter);
 
-			interesse = interessiDao.findByInteressiPK(id);
+			interesse = interessiDao.findById(interesse.getId());
 
 			Assert.isTrue(interesse == null, "Interesse non canellato");
 		} catch (Exception e) {

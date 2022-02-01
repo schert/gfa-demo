@@ -17,11 +17,13 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "ATTIVITA")
+@SequenceGenerator(name = "seqid-gen", sequenceName = "ATTIVITA_SEQ")
 public class Attivita implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen")
 	private BigDecimal idattivita;
 
 	@ManyToOne(cascade = CascadeType.ALL)

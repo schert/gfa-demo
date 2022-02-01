@@ -1,7 +1,7 @@
 spring:
 # Database properties
   datasource:
-    url: jdbc:oracle:thin:@151.24.124.111:1521/pdb1.bip.lan
+    url: jdbc:oracle:thin:@151.24.107.26:1521/pdb1.bip.lan
     username: NGFA
     password: Password1
 # JPA Hibernate properties

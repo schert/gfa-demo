@@ -1,6 +1,7 @@
 package gov.mef.gfa.anagrafiche.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.mef.gfa.anagrafiche.bean.EnteRes;
 import gov.mef.gfa.anagrafiche.excepltion.ServiceException;
 import gov.mef.gfa.anagrafiche.service.impl.EnteServiceImpl;
-import gov.mef.gfa.common.gfacommon.bean.StatusRes;
+import gov.mef.gfa.common.bean.StatusRes;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -31,7 +32,7 @@ public class EnteController {
 	
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Recupero Ente per ID", notes = "Restituisce tutte le informazioni relative all'ente ricercato tramite ID")
-	public EnteRes getEnteById(@PathVariable @NotNull Integer id) {
+	public EnteRes getEnteById(@PathVariable @NotNull BigDecimal id) {
 		logger.info("Controller: {} Method: getEnteById", EnteController.class);
 		EnteRes enteResponse = new EnteRes();
 		

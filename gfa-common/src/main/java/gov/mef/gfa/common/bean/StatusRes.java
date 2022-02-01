@@ -1,4 +1,4 @@
-package gov.mef.gfa.common.gfacommon.bean;
+package gov.mef.gfa.common.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

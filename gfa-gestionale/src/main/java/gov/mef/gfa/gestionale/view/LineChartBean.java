@@ -9,15 +9,16 @@ import org.primefaces.model.chart.LineChartSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import gov.mef.gfa.gestionale.model.Ente;
 import gov.mef.gfa.gestionale.service.DataService;
 
 @Component
 public class LineChartBean {
-	
+
 	@Autowired
 	private DataService dataService;
 	private LineChartModel lineModel;
-	
+
 	@PostConstruct
 	public void init() {
 		lineModel = new LineChartModel();
@@ -39,7 +40,7 @@ public class LineChartBean {
 
 	}
 
-	public void chartCall() {		
+	public void chartCall() {
 		lineModel = new LineChartModel();
 		LineChartSeries s = new LineChartSeries();
 		dataService.getLineChartData().forEach(s::set);
@@ -58,9 +59,13 @@ public class LineChartBean {
 		x.setTickInterval("1");
 		x.setLabel("Number of Years");
 	}
-	
+
 	public String getEnteById(Integer id) {
-		return dataService.getEnteById(id).getEnte().getIdEnte().toString();
+		Ente enteRes = dataService.getEnteById(id).getEnte();
+		if (enteRes != null)
+			return dataService.getEnteById(id).getEnte().getIdEnte().toString();
+		
+		return "Nessun valore";
 	}
 
 	public LineChartModel getLineModel() {
