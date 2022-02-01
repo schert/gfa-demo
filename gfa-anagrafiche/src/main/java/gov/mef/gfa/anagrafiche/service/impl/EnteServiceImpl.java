@@ -24,7 +24,7 @@ public class EnteServiceImpl implements EnteService {
 		
 		try {			
 			EnteRes enteRes = new EnteRes();
-			enteRes.setEnte(enteRepository.findByIdEnte(id));
+			enteRes.setEnte(enteRepository.findByIdente(id));
 			
 			return enteRes;
 		} catch (Exception e) {

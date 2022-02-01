@@ -27,7 +27,7 @@ public class BenStoricoSettore implements Serializable {
 	private BigDecimal idbeneficiario;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idsettore", foreignKey=@ForeignKey(name = "Fk_settore"))
+    @JoinColumn(name = "idsettore", foreignKey=@ForeignKey(name = "Fk_ben_str_set_settore"))
 	private BenSettore settore;
 	
 	@Column(precision=4)

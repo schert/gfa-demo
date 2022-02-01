@@ -26,7 +26,7 @@ public class RipartizioneGeografica implements Serializable {
 	
 	@Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "codregione", foreignKey=@ForeignKey(name = "Fk_regione"))
+    @JoinColumn(name = "codregione", foreignKey=@ForeignKey(name = "Fk_rip_geo_regione"))
 	private Regione regione;
 
 }

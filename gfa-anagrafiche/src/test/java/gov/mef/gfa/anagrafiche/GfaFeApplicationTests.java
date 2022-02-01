@@ -11,6 +11,7 @@ import gov.mef.gfa.anagrafiche.dao.BenBeneficiarioDao;
 import gov.mef.gfa.anagrafiche.dao.BenStoricoDao;
 import gov.mef.gfa.anagrafiche.dao.ConvenzioniDao;
 import gov.mef.gfa.anagrafiche.dao.InteressiDao;
+import gov.mef.gfa.anagrafiche.model.Attivita;
 import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
 import gov.mef.gfa.anagrafiche.model.BenSettore;
 import gov.mef.gfa.anagrafiche.model.BenStoricoSettore;
@@ -64,7 +65,12 @@ class GfaBeApplicationTests {
 	public void testConvenzioni() {
 		try {
 			Convenzioni con = new Convenzioni();
-			con.setIdattivita(new BigDecimal(1));
+			Attivita attivita = new Attivita();
+			attivita.setIdattivita(new BigDecimal(1));
+			attivita.setAnnocompetenza(new BigDecimal(2022));
+			attivita.setStanziamentoiniziale(new BigDecimal(202200));
+			con.setAttivita(attivita);
+			
 			con.setIndirizzo("indirizzo");
 			con.setMaxfinerogabile(new BigDecimal(2));
 			con.setModificato(new BigDecimal(3));
@@ -92,10 +98,15 @@ class GfaBeApplicationTests {
 	@Test
 	public void testInteressi() {
 		try {
+			
 			Interessi inter = new Interessi();
 			inter.setCapitaleinvestito(new BigDecimal(10));
 			inter.setImporto(new BigDecimal(50));
-			InteressiPK id = new InteressiPK(new BigDecimal(1), new BigDecimal(2));
+			Attivita attivita = new Attivita();
+			attivita.setIdattivita(new BigDecimal(2));
+			attivita.setAnnocompetenza(new BigDecimal(2022));
+			attivita.setStanziamentoiniziale(new BigDecimal(30200));			
+			InteressiPK id = new InteressiPK(attivita, new BigDecimal(2));
 			inter.setInteressiPK(id);
 			inter.setModificato(new BigDecimal(1));
 			inter.setNote("note");

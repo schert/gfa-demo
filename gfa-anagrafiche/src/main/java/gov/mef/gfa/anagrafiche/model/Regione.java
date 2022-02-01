@@ -25,7 +25,7 @@ public class Regione implements Serializable {
 	@Column(length=255)
 	private String denoregione;
 
-	@Column(length=3)
+	@Column(length=3, unique = true)
 	private String siglaregione;
 
 }
