@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ public class RipartizioneGeografica implements Serializable {
 	
 	@Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "codregione")
-	private Regione codregione;
+    @JoinColumn(name = "codregione", foreignKey=@ForeignKey(name = "Fk_regione"))
+	private Regione regione;
 
 }

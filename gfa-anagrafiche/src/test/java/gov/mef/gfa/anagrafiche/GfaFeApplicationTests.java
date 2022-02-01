@@ -12,6 +12,7 @@ import gov.mef.gfa.anagrafiche.dao.BenStoricoDao;
 import gov.mef.gfa.anagrafiche.dao.ConvenzioniDao;
 import gov.mef.gfa.anagrafiche.dao.InteressiDao;
 import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
+import gov.mef.gfa.anagrafiche.model.BenSettore;
 import gov.mef.gfa.anagrafiche.model.BenStoricoSettore;
 import gov.mef.gfa.anagrafiche.model.Convenzioni;
 import gov.mef.gfa.anagrafiche.model.Interessi;
@@ -28,26 +29,35 @@ class GfaBeApplicationTests {
 	BenBeneficiarioDao benBeneficiarioDao;
 	@Autowired
 	BenStoricoDao benStoricoDao;
-	
+
 	@Test
 	public void testBenStoricoSettore() {
-		BenStoricoSettore storico = new BenStoricoSettore();
-		storico.setIdbeneficiario(new BigDecimal(1));
-		storico.setIdsettore("1");
-		storico.setAnnocompetenzada(new BigDecimal(2022));
-		storico.setAnnocompetenzaa(new BigDecimal(2023));
-		
-		BenStoricoSettore storicoNew = benStoricoDao.save(storico);
+		try {
+			BenStoricoSettore storico = new BenStoricoSettore();
+			storico.setIdbeneficiario(new BigDecimal(1));
 
-		storicoNew = benStoricoDao.findByidbeneficiario(storicoNew.getIdbeneficiario());
+			BenSettore settore = new BenSettore();
+			settore.setIdsettore(new BigDecimal(1));
 
-		Assert.isTrue(storicoNew != null, "Nessuno storicoSettore creato");
+			storico.setSettore(settore);
+			storico.setAnnocompetenzada(new BigDecimal(2022));
+			storico.setAnnocompetenzaa(new BigDecimal(2023));
 
-		benStoricoDao.delete(storico);
+			BenStoricoSettore storicoNew = benStoricoDao.save(storico);
 
-		storicoNew = benStoricoDao.findByidbeneficiario(storicoNew.getIdbeneficiario());
+			storicoNew = benStoricoDao.findByidbeneficiario(storicoNew.getIdbeneficiario());
 
-		Assert.isTrue(storicoNew == null, "storicoSettore non canellato");
+			Assert.isTrue(storicoNew != null, "Nessuno storicoSettore creato");
+
+			benStoricoDao.delete(storico);
+
+			storicoNew = benStoricoDao.findByidbeneficiario(storicoNew.getIdbeneficiario());
+
+			Assert.isTrue(storicoNew == null, "storicoSettore non canellato");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Test

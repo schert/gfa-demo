@@ -21,7 +21,7 @@ public class BenLimiteaiuto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idconfigurazione")
+    @JoinColumn(name = "idconfigurazione", foreignKey=@ForeignKey(name = "Fk_ben_configurazione_deminimis"))
 	private BenConfigurazionedeminimis benConfigurazionedeminimis;
 	
 	@Id
