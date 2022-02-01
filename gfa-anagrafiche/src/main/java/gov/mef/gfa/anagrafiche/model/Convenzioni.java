@@ -1,12 +1,18 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 
 /**
@@ -17,10 +23,12 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name="CONVENZIONI")
+@SequenceGenerator(name = "seqid-gen", sequenceName = "CONVENZIONI_SEQ")
 public class Convenzioni implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen")
 	@Column(nullable=false, precision=38)
 	private BigDecimal idconvenzione;
 	
