@@ -30,7 +30,7 @@ class GfaBeApplicationTests {
 	BenStoricoDao benStoricoDao;
 	
 	@Test
-	public void testGetAllUsers() {
+	public void testBenStoricoSettore() {
 		BenStoricoSettore storico = new BenStoricoSettore();
 		storico.setIdbeneficiario(new BigDecimal(1));
 		storico.setIdsettore("1");
