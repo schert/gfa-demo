@@ -24,7 +24,7 @@ public class Interessi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-    private InteressiPK convenzioniPK;
+    private InteressiPK interessiPK;
 	
 	@Column(precision=12, scale=2)
 	private BigDecimal capitaleinvestito;
