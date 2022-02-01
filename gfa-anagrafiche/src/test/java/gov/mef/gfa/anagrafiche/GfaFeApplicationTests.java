@@ -37,9 +37,17 @@ class GfaBeApplicationTests {
 		storico.setAnnocompetenzada(new BigDecimal(2022));
 		storico.setAnnocompetenzaa(new BigDecimal(2023));
 		
-		benStoricoDao.save(storico);
-		benStoricoDao.findAll();
+		BenStoricoSettore storicoNew = benStoricoDao.save(storico);
+
+		storicoNew = benStoricoDao.findByidbeneficiario(storicoNew.getIdbeneficiario());
+
+		Assert.isTrue(storicoNew != null, "Nessuno storicoSettore creato");
+
 		benStoricoDao.delete(storico);
+
+		storicoNew = benStoricoDao.findByidbeneficiario(storicoNew.getIdbeneficiario());
+
+		Assert.isTrue(storicoNew == null, "storicoSettore non canellato");
 	}
 
 	@Test
