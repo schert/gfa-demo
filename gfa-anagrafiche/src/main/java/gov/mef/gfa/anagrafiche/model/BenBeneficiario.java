@@ -17,12 +17,12 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name="BEN_BENEFICIARIO")
-@SequenceGenerator(name = "seqid-gen", sequenceName = "BEN_BENEFICIARIO_SEQ")
+@SequenceGenerator(name = "seqid-gen-benbeneficiario", sequenceName = "BEN_BENEFICIARIO_SEQ")
 public class BenBeneficiario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-benbeneficiario")
 	@Column(nullable=false)
 	private BigDecimal idbeneficiario;
 

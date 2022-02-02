@@ -1,7 +1,11 @@
+db:
+  host: 151.24.107.26
+  port: 1521
+  
 spring:
 # Database properties
   datasource:
-    url: jdbc:oracle:thin:@151.24.107.26:1521/pdb1.bip.lan
+    url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
     username: NGFA
     password: Password1
 # JPA Hibernate properties

@@ -27,12 +27,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="CONVENZIONI")
-@SequenceGenerator(name = "seqid-gen", sequenceName = "CONVENZIONI_SEQ")
+@SequenceGenerator(name = "seqid-gen-convenzioni", sequenceName = "CONVENZIONI_SEQ")
 public class Convenzioni implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-convenzioni")
 	@Column(nullable=false, precision=38)
 	private BigDecimal idconvenzione;
 	
