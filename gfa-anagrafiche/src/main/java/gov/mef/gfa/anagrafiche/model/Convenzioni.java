@@ -3,7 +3,6 @@ package gov.mef.gfa.anagrafiche.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -36,7 +35,7 @@ public class Convenzioni implements Serializable {
 	@Column(nullable=false, precision=38)
 	private BigDecimal idconvenzione;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "idattivita", foreignKey=@ForeignKey(name = "Fk_convenzioni_attivita"))	
 	private Attivita attivita;
 

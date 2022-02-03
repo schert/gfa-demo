@@ -1,13 +1,24 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * The persistent class for the ATTIVITA database table.
@@ -26,7 +37,7 @@ public class Attivita implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-attivita")
 	private BigDecimal idattivita;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "idente", foreignKey=@ForeignKey(name = "Fk_attivita_ente"))
 	private Ente ente;
 
@@ -67,7 +78,9 @@ public class Attivita implements Serializable {
 
 	private BigDecimal documentazioneobbligatorianew;
 
-	private BigDecimal idambitonew;
+	@ManyToOne
+	@JoinColumn(name = "idambitonew", foreignKey=@ForeignKey(name = "Fk_attivita_anbito"), nullable = false)
+	private Attivita idambitonew;
 
 	@Column(precision = 12, scale = 2)
 	private BigDecimal importodeliberate;

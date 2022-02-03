@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -82,8 +81,9 @@ public class Ente implements Serializable {
 	@Column(name = "SL_CAP", length = 5)
 	private String slCap;
 
-	@Column(name = "SL_COMUNE", nullable = false, length = 10)
-	private String slComune;
+	@ManyToOne
+	@JoinColumn(name = "SL_COMUNE", foreignKey=@ForeignKey(name = "Fk_ente_comune"))
+	private Comune slComune;
 
 	@Column(name = "SL_EMAIL", length = 50)
 	private String slEmail;
@@ -100,9 +100,9 @@ public class Ente implements Serializable {
 	@Column(name = "SL_PEC", length = 50)
 	private String slPec;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "SL_PROVINCIA", foreignKey=@ForeignKey(name = "Fk_ente_provincia"))
-	private Provincia provincia;
+	private Provincia slProvincia;
 
 	@Column(name = "SL_TELEFONO1", nullable = false, length = 50)
 	private String slTelefono1;
@@ -116,8 +116,9 @@ public class Ente implements Serializable {
 	@Column(name = "SO_CAP", length = 5)
 	private String soCap;
 
-	@Column(name = "SO_COMUNE", length = 10)
-	private String soComune;
+	@ManyToOne
+	@JoinColumn(name = "SO_COMUNE", foreignKey=@ForeignKey(name = "Fk_ente_comune_2"))
+	private Comune soComune;
 
 	@Column(name = "SO_EMAIL", length = 50)
 	private String soEmail;
@@ -128,7 +129,7 @@ public class Ente implements Serializable {
 	@Column(name = "SO_INDIRIZZO", length = 100)
 	private String soIndirizzo;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "SO_PROVINCIA", foreignKey=@ForeignKey(name = "Fk_ente_provincia_2"))
 	private Provincia soProvincia;
 

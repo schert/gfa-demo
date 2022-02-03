@@ -3,7 +3,6 @@ package gov.mef.gfa.anagrafiche.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -26,7 +25,7 @@ public class BenStoricoSettore implements Serializable {
 	@Column(nullable=false)
 	private BigDecimal idbeneficiario;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "idsettore", foreignKey=@ForeignKey(name = "Fk_ben_str_set_settore"))
 	private BenSettore settore;
 	

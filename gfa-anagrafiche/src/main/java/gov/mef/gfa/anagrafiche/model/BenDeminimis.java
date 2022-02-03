@@ -24,11 +24,11 @@ public class BenDeminimis implements Serializable {
 	@Column(nullable = false)
 	private BigDecimal iddeminimis;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "idattivita", foreignKey=@ForeignKey(name = "Fk_benDeminimis_attivita"))	
 	private Attivita attivita;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "idbeneficiario", foreignKey=@ForeignKey(name = "Fk_ben_beneficiario"))
 	private BenBeneficiario benBeneficiario;
 
@@ -50,7 +50,8 @@ public class BenDeminimis implements Serializable {
 	@Column(length = 1)
 	private String stato;
 
-	@Column(nullable = false, precision = 2)
-	private BigDecimal tiporichiesta;
+	@ManyToOne
+	@JoinColumn(name = "tiporichiesta", foreignKey=@ForeignKey(name = "Fk_ben_deminimis_tiporichiesta"), nullable = false)
+	private BenTiporichiesta tiporichiesta;
 
 }

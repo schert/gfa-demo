@@ -13,19 +13,27 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+ * The persistent class for the COMUNE database table.
+ * 
+ */
 @Entity
+@Table(name="COMUNE")
 @Data
 @NoArgsConstructor
-@Table(name="RIPARTIZIONEGEOGRAFICA")
-public class RipartizioneGeografica implements Serializable {
+public class Comune implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Column(length=6)
-	private String ripartizione;
-	
+
 	@Id
-    @ManyToOne
-    @JoinColumn(name = "codregione", foreignKey=@ForeignKey(name = "Fk_rip_geo_regione"))
-	private Regione regione;
+	@Column(nullable=false, length=10)
+	private String codcomune;
+
+	@ManyToOne
+	@JoinColumn(name = "codprovincia", foreignKey=@ForeignKey(name = "Fk_comune_provincia"), nullable = false)
+	private Provincia codprovincia;
+
+	@Column(length=255)
+	private String denocomune;
 
 }

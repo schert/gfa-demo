@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 public class BenLimiteaiuto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "idconfigurazione", foreignKey=@ForeignKey(name = "Fk_ben_configurazione_deminimis"))
 	private BenConfigurazionedeminimis benConfigurazionedeminimis;
 	
@@ -28,11 +28,11 @@ public class BenLimiteaiuto implements Serializable {
 	@Column(nullable=false)
 	private BigDecimal idlimiteaiuto;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "idsettore")
 	private BenSettore idsettore;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "idtipoaiuto")
 	private BenTipoaiuto benTipoaiuto;
 

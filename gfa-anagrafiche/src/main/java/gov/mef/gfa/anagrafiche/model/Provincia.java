@@ -22,7 +22,7 @@ public class Provincia implements Serializable {
 	@Column(nullable=false, length=10)
 	private String codprovincia;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "codregione", foreignKey=@ForeignKey(name = "Fk_provincia_regione"))
 	private Regione regione;
 
