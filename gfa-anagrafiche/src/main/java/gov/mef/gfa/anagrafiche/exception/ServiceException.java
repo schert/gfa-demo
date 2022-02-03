@@ -1,4 +1,4 @@
-package gov.mef.gfa.anagrafiche.excepltion;
+package gov.mef.gfa.anagrafiche.exception;
 
 public class ServiceException extends Exception {
 

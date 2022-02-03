@@ -1,13 +1,22 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * The persistent class for the ENTE database table.
@@ -66,10 +75,9 @@ public class Ente implements Serializable {
 
 	@Column(length = 100)
 	private String settoreeconomico;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "siglaregione", foreignKey=@ForeignKey(name = "Fk_ente_regione"))
-	private Regione regione;
+	
+	@Column(length = 3)
+	private String siglaregione;
 
 	@Column(name = "SL_CAP", length = 5)
 	private String slCap;
@@ -119,9 +127,10 @@ public class Ente implements Serializable {
 
 	@Column(name = "SO_INDIRIZZO", length = 100)
 	private String soIndirizzo;
-
-	@Column(name = "SO_PROVINCIA", length = 10)
-	private String soProvincia;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "SO_PROVINCIA", foreignKey=@ForeignKey(name = "Fk_ente_provincia_2"))
+	private Provincia soProvincia;
 
 	@Column(name = "SO_TELEFONO1", length = 50)
 	private String soTelefono1;

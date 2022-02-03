@@ -29,7 +29,7 @@ public class Provincia implements Serializable {
 	@Column(length=255)
 	private String denoprovincia;
 
-	@Column(length=2)
+	@Column(length=3)
 	private String sigla;
 
 }

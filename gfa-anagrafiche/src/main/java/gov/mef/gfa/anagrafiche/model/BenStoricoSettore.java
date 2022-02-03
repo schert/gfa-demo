@@ -33,7 +33,7 @@ public class BenStoricoSettore implements Serializable {
 	@Column(precision=4)
 	private BigDecimal annocompetenzada;
 
-	@Column(nullable=false, precision=4)
+	@Column(precision=4)
 	private BigDecimal annocompetenzaa;
 	
 }

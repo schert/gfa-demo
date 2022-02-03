@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import gov.mef.gfa.anagrafiche.bean.EnteRes;
 import gov.mef.gfa.anagrafiche.controller.EnteController;
 import gov.mef.gfa.anagrafiche.dao.EnteDao;
-import gov.mef.gfa.anagrafiche.excepltion.ServiceException;
+import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.service.EnteService;
 
 @Service

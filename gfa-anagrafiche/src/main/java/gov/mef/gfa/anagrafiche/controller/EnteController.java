@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.mef.gfa.anagrafiche.bean.EnteRes;
-import gov.mef.gfa.anagrafiche.excepltion.ServiceException;
+import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.service.impl.EnteServiceImpl;
 import gov.mef.gfa.common.bean.StatusRes;
 import io.swagger.annotations.ApiOperation;
