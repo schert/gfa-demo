@@ -47,7 +47,7 @@ public class Interessi implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "idtipologia", foreignKey=@ForeignKey(name = "Fk_interessi_tip_interessi"), nullable = false)
-	private Tipologiainteressi idtipologia;
+	private Tipologiainteressi tipologiaInteressi;
 
 	@Column(nullable=false, precision=12, scale=2)
 	private BigDecimal importo;

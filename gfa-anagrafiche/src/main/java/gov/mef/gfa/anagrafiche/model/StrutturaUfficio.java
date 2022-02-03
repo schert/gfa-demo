@@ -1,6 +1,7 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,25 +16,21 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * The persistent class for the COMUNE database table.
+ * The persistent class for the STRUTTURA_UFFICIO database table.
  * 
  */
 @Entity
-@Table(name="COMUNE")
 @Data
 @NoArgsConstructor
-public class Comune implements Serializable {
+@Table(name="STRUTTURA_UFFICIO")
+public class StrutturaUfficio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(nullable=false, length=10)
-	private String codcomune;
-
 	@ManyToOne
-	@JoinColumn(name = "codprovincia", foreignKey=@ForeignKey(name = "Fk_comune_provincia"), nullable = false)
-	private Provincia provincia;
+	@JoinColumn(name = "idstruttura", foreignKey=@ForeignKey(name = "Fk_str_ufficio_struttura"), nullable = false)
+	private Struttura struttura;
 
-	@Column(length=255)
-	private String denocomune;
-
+	@Id
+	@Column(nullable=false, precision=38)
+	private BigDecimal idufficio;
 }

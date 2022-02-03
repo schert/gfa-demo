@@ -29,11 +29,11 @@ public class BenLimiteaiuto implements Serializable {
 	private BigDecimal idlimiteaiuto;
 
 	@ManyToOne
-    @JoinColumn(name = "idsettore")
-	private BenSettore idsettore;
+    @JoinColumn(name = "idsettore", foreignKey=@ForeignKey(name = "Fk_ben_limiteaiuto_ben_settore"))
+	private BenSettore benSettore;
 
 	@ManyToOne
-    @JoinColumn(name = "idtipoaiuto")
+    @JoinColumn(name = "idtipoaiuto", foreignKey=@ForeignKey(name = "Fk_ben_limiteaiuto_ben_tipoaiuto"))
 	private BenTipoaiuto benTipoaiuto;
 
 	@Column(nullable=false, precision=10, scale=2)
