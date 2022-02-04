@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.mef.gfa.anagrafiche.bean.EnteRes;
 import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.service.impl.EnteServiceImpl;
-import gov.mef.gfa.common.bean.StatusRes;
+import gov.mef.gfa.common.bean.anagrafica.EnteRes;
+import gov.mef.gfa.common.bean.common.StatusRes;
 import io.swagger.annotations.ApiOperation;
 
 @RestController

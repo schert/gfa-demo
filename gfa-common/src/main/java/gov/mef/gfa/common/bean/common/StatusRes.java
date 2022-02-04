@@ -1,4 +1,4 @@
-package gov.mef.gfa.common.bean;
+package gov.mef.gfa.common.bean.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StatusRes {
-	private static final int ERROR = -1;
+	private static final int SYSTEM_ERROR = -1;
 	private static final int BUSINESS_ERROR = -2;
 	private static final int SUCCESS = 0;
 	private static final String OK = "OK";
@@ -18,7 +18,7 @@ public class StatusRes {
 	private Object request;
 	
 	public static StatusRes error(String message, Object request) {	
-		return new StatusRes(ERROR, message, request);
+		return new StatusRes(SYSTEM_ERROR, message, request);
 	}
 	
 	public static StatusRes businessError(String message, Object request) {	
