@@ -1,15 +1,12 @@
 package gov.mef.gfa.common.bean.anagrafica;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 import lombok.Data;
 
 @Data
-public class EntePO  implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class EntePO {
 	private BigDecimal idente;
 	private String causale;
 	private String codicefiscale;
