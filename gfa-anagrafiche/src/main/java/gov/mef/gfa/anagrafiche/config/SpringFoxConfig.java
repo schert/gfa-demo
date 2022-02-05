@@ -26,8 +26,8 @@ public class SpringFoxConfig {
 	
 	private ApiInfo apiInfo() {
 		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
-		apiInfoBuilder.title("REST API");
-		apiInfoBuilder.description("REST API Generation");
+		apiInfoBuilder.title("ANAGRAFICHE API");
+		apiInfoBuilder.description("REST API del microservizio gfa-anagrafiche");
 		apiInfoBuilder.version("1.0.0");
 		apiInfoBuilder.license("GNU GENERAL PUBLIC LICENSE, Version 3");
 		apiInfoBuilder.licenseUrl("https://www.gnu.org/licenses/gpl-3.0.en.html");
