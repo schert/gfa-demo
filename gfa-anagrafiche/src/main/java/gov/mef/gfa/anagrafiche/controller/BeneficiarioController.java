@@ -28,7 +28,7 @@ public class BeneficiarioController {
 	Logger logger = LoggerFactory.getLogger(BeneficiarioController.class);
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Recupero Beneficiario per ID", notes = "Restituisce tutte le informazioni relative all'beneficiario ricercato tramite ID")
+	@ApiOperation(value = "Recupero Beneficiario per ID", notes = "Restituisce tutte le informazioni relative al beneficiario ricercato tramite ID")
 	public ResponseEntity<Mono<BeneficiarioRes>> getBeneficiarioById(
 			@ApiParam(value = "ID dell'beneficiario", example = "1", required = true) @PathVariable long id) {
 
