@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
 
 @Repository
-public interface BenBeneficiarioDao extends JpaRepository<BenBeneficiario, Long> {
+public interface BenBeneficiarioDAO extends JpaRepository<BenBeneficiario, Long> {
 	public BenBeneficiario findByIdbeneficiario(BigDecimal id);
 }

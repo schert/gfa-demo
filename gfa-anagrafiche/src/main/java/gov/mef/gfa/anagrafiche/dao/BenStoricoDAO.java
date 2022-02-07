@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import gov.mef.gfa.anagrafiche.model.BenStoricoSettore;
 
 @Repository
-public interface BenStoricoDao extends JpaRepository<BenStoricoSettore, BigDecimal> {
+public interface BenStoricoDAO extends JpaRepository<BenStoricoSettore, BigDecimal> {
 	public BenStoricoSettore findByidbeneficiario(BigDecimal id);
 }

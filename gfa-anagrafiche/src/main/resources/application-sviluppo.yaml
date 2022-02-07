@@ -2,6 +2,8 @@ db:
   host: 151.24.113.197
   port: 1521
   
+spring.jackson.default-property-inclusion: NON_NULL
+  
 spring:
 # Database properties
   datasource:

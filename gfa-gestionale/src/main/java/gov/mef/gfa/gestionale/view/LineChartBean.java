@@ -9,7 +9,7 @@ import org.primefaces.model.chart.LineChartSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import gov.mef.gfa.gestionale.model.Ente;
+import gov.mef.gfa.common.bean.anagrafica.EntePO;
 import gov.mef.gfa.gestionale.service.DataService;
 
 @Component
@@ -61,9 +61,9 @@ public class LineChartBean {
 	}
 
 	public String getEnteById(Integer id) {
-		Ente enteRes = dataService.getEnteById(id).getEnte();
+		EntePO enteRes = dataService.getEnteById(id).getEnte();
 		if (enteRes != null)
-			return dataService.getEnteById(id).getEnte().getIdEnte().toString();
+			return dataService.getEnteById(id).getEnte().getIdente().toString();
 		
 		return "Nessun valore";
 	}
