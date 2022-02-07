@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "ATTIVITA")
-@SequenceGenerator(name = "seqid-gen-attivita", sequenceName = "ATTIVITA_SEQ")
+@SequenceGenerator(name = "seqid-gen-attivita", sequenceName = "ATTIVITA_SEQ", allocationSize = 1)
 public class Attivita implements Serializable {
 	private static final long serialVersionUID = 1L;
 

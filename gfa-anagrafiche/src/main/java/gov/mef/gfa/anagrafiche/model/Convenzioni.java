@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="CONVENZIONI")
-@SequenceGenerator(name = "seqid-gen-convenzioni", sequenceName = "CONVENZIONI_SEQ")
+@SequenceGenerator(name = "seqid-gen-convenzioni", sequenceName = "CONVENZIONI_SEQ", allocationSize = 1)
 public class Convenzioni implements Serializable {
 	private static final long serialVersionUID = 1L;
 

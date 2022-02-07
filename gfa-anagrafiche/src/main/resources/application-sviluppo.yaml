@@ -29,6 +29,7 @@ api-tag: api
 path-name:
   ente: ente
   regione: regione
+  beneficiario: beneficiario
       
 server:
   port: 8081

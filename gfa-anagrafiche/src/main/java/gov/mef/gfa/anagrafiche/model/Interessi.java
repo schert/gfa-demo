@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="INTERESSI")
 @Data
 @NoArgsConstructor
-@SequenceGenerator(name = "seqid-gen-interessi", sequenceName = "INTERESSI_SEQ")
+@SequenceGenerator(name = "seqid-gen-interessi", sequenceName = "INTERESSI_SEQ", allocationSize = 1)
 public class Interessi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class Interessi implements Serializable {
 	@Id
 	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-interessi")
-	private BigDecimal id;
+	private BigDecimal idinteressi;
 	
 	@Column(precision=12, scale=2)
 	private BigDecimal capitaleinvestito;

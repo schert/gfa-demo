@@ -13,7 +13,9 @@ import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.service.EnteService;
 import gov.mef.gfa.common.bean.anagrafica.EntePO;
 import gov.mef.gfa.common.bean.anagrafica.EnteRes;
+import gov.mef.gfa.common.bean.common.StatusRes;
 import gov.mef.gfa.common.utils.MapperUtils;
+import reactor.core.publisher.Mono;
 
 @Service
 public class EnteServiceImpl implements EnteService {
@@ -22,7 +24,7 @@ public class EnteServiceImpl implements EnteService {
 	EnteDAO enteRepository;	
 	private Logger logger = LoggerFactory.getLogger(EnteServiceImpl.class);
 	
-	public EnteRes getEnteById(BigDecimal id) throws ServiceException {
+	public Mono<EnteRes> getEnteById(BigDecimal id) throws ServiceException {
 		
 		logger.info("Controller: {} Method: getEnteById", EnteController.class);
 		
@@ -31,7 +33,12 @@ public class EnteServiceImpl implements EnteService {
 			EntePO entePO = MapperUtils.copyProperties(enteRepository.findByIdente(id), EntePO.class);			
 			enteRes.setEnte(entePO);
 			
-			return enteRes;
+			if(entePO == null)
+				return null;
+			
+			enteRes.setStatus(StatusRes.success());
+			
+			return Mono.just(enteRes);
 		} catch (Exception e) {
 			throw new ServiceException(e);
 		}

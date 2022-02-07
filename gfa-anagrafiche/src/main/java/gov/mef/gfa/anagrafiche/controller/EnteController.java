@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,7 @@ import gov.mef.gfa.common.bean.common.StatusRes;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import reactor.core.publisher.Mono;
 
 @Api(tags = {"CRUD Anagrafica Ente"})
 @RestController
@@ -35,19 +38,19 @@ public class EnteController {
 	
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Recupero Ente per ID", notes = "Restituisce tutte le informazioni relative all'ente ricercato tramite ID")
-	public EnteRes getEnteById(@ApiParam(value = "ID dell'ente", example = "1", required = true) @PathVariable @NotNull BigDecimal id) {
+	public ResponseEntity<Mono<EnteRes>> getEnteById(@ApiParam(value = "ID dell'ente", example = "1", required = true) @PathVariable @NotNull BigDecimal id) {
 		logger.info("Controller: {} Method: getEnteById", EnteController.class);
-		EnteRes enteResponse = new EnteRes();
 		
 		try {		
-			enteResponse = enteServices.getEnteById(id);
-			enteResponse.setStatus(StatusRes.success());
-			return enteResponse;
+			Mono<EnteRes> enteResponse = enteServices.getEnteById(id);
+			HttpStatus status = enteResponse != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+		    return new ResponseEntity<Mono<EnteRes>>(enteResponse, status);
 		} catch (ServiceException e) {
+			EnteRes enteResponse = new EnteRes();
 			logger.error("Controller: {} Method: getEnteById", EnteController.class);
 			e.printStackTrace();
 			enteResponse.setStatus(StatusRes.error("Errore nel recuperare le informazioni", id));
-			return enteResponse;
+			return new ResponseEntity<Mono<EnteRes>>(Mono.just(enteResponse), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

@@ -1,33 +1,49 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 
 /**
- * The persistent class for the BEN_BENEFICIARIO database table.
+ * The persistent class for the BENEFICIARIO_PMI_DEMINIMIS database table.
  * 
  */
+@Entity
 @Data
 @NoArgsConstructor
-@Entity
 @Table(name="BEN_BENEFICIARIO")
-@SequenceGenerator(name = "seqid-gen-benbeneficiario", sequenceName = "BEN_BENEFICIARIO_SEQ")
+@SequenceGenerator(name = "seqid-gen-beneficiario", sequenceName = "BENEFICIARIO_SEQ", allocationSize = 1)
 public class BenBeneficiario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-benbeneficiario")
-	@Column(nullable=false)
-	private BigDecimal idbeneficiario;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqid-gen-beneficiario")
+	@Column(unique=true, nullable=false, precision=38)
+	private long idBeneficiario;
+
+	@Column(length=100)
+	private String codiceAteco;
 
 	@Column(length=16)
-	private String codicefiscale;
+	private String codiceFiscale;
+
+	@ManyToOne
+    @JoinColumn(name = "comune", foreignKey=@ForeignKey(name = "Fk_beneficiario_comune"))
+	private Comune comune;
 
 	@Column(length=100)
 	private String email;
@@ -44,15 +60,34 @@ public class BenBeneficiario implements Serializable {
 	@Column(length=4000)
 	private String note;
 
+	@Column(precision=38)
+	private BigDecimal numeroAddetti;
+
 	@Column(length=11)
-	private String partitaiva;
+	private String partitaIva;
+
+	@ManyToOne
+    @JoinColumn(name = "provincia", foreignKey=@ForeignKey(name = "Fk_beneficiario_provincia"))
+	private Provincia provincia;
 
 	@Column(length=200)
-	private String ragionesociale;
+	private String ragioneSociale;
+
+	@ManyToOne
+    @JoinColumn(name = "regione", foreignKey=@ForeignKey(name = "Fk_beneficiario_regione"))
+	private Regione regione;
+
+	@ManyToOne
+    @JoinColumn(name = "settore", foreignKey=@ForeignKey(name = "Fk_beneficiario_settore"))
+	private BenSettore settore;
 
 	@Column(length=20)
 	private String telefono;
 
-	private BigDecimal tipopersona;
+	@ManyToOne
+    @JoinColumn(name = "tipopersona", foreignKey=@ForeignKey(name = "Fk_beneficiario_tipo_persona"))
+	private TipoPersona tipopersona;
+
+	boolean flagCancellatoSn;
 
 }
