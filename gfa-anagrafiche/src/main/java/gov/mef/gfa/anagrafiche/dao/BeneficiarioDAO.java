@@ -1,5 +1,7 @@
 package gov.mef.gfa.anagrafiche.dao;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,5 +9,5 @@ import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
 
 @Repository
 public interface BeneficiarioDAO extends JpaRepository<BenBeneficiario, Long> {
-	public BenBeneficiario findById(long id);
+	public BenBeneficiario findById(BigDecimal id);
 }

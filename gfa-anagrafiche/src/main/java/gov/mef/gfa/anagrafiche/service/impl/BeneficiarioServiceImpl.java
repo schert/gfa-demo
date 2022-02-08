@@ -1,5 +1,7 @@
 package gov.mef.gfa.anagrafiche.service.impl;
 
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	
 	private Logger logger = LoggerFactory.getLogger(BeneficiarioServiceImpl.class);
 	
-	public Mono<BeneficiarioRes> getBeneficiarioById(long id) throws ServiceException {
+	public Mono<BeneficiarioRes> getBeneficiarioById(BigDecimal id) throws ServiceException {
 		
 		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 		

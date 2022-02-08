@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class BeneficiarioPO {
-	private long idBeneficiario;
+	private BigDecimal id;
 	private String codiceAteco;
 	private String codiceFiscale;
 	private ComunePO comune;

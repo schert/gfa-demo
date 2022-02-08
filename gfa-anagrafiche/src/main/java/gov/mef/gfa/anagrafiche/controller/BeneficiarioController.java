@@ -1,5 +1,7 @@
 package gov.mef.gfa.anagrafiche.controller;
 
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class BeneficiarioController {
 	@GetMapping("/{id}")
 	@Operation(summary = "Recupero Beneficiario per ID", description = "Restituisce tutte le informazioni relative al beneficiario ricercato tramite ID")
 	public Mono<ResponseEntity<BeneficiarioRes>> getBeneficiarioById(
-			@Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") long id) {
+			@Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") BigDecimal id) {
 
 		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 
