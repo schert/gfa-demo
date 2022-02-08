@@ -30,6 +30,7 @@ path-name:
   ente: ente
   regione: regione
   beneficiario: beneficiario
+  finanziamento: finanziamento-diretto
       
 server:
   port: 8081
