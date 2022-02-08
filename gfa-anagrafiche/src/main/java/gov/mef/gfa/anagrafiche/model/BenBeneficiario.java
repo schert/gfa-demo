@@ -88,6 +88,7 @@ public class BenBeneficiario implements Serializable {
     @JoinColumn(name = "tipopersona", foreignKey=@ForeignKey(name = "Fk_beneficiario_tipo_persona"))
 	private TipoPersona tipopersona;
 
+	@Column(length=20, nullable = false, columnDefinition = "boolean default false")
 	boolean flagCancellatoSn;
 
 }

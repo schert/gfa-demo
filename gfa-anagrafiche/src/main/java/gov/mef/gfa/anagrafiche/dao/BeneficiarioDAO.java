@@ -10,4 +10,5 @@ import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
 @Repository
 public interface BeneficiarioDAO extends JpaRepository<BenBeneficiario, Long> {
 	public BenBeneficiario findById(BigDecimal id);
+	public Integer deleteById(BigDecimal id);
 }
