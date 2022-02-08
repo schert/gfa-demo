@@ -21,12 +21,8 @@ import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.service.impl.EnteServiceImpl;
 import gov.mef.gfa.common.bean.anagrafica.EnteRes;
 import gov.mef.gfa.common.bean.common.StatusRes;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import reactor.core.publisher.Mono;
 
-@Api(tags = {"CRUD Anagrafica Ente"})
 @RestController
 @RequestMapping("/${path-name.ente}/${api-tag}/v1")
 public class EnteController {
@@ -37,8 +33,7 @@ public class EnteController {
 	Logger logger = LoggerFactory.getLogger(EnteController.class);
 	
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Recupero Ente per ID", notes = "Restituisce tutte le informazioni relative all'ente ricercato tramite ID")
-	public ResponseEntity<Mono<EnteRes>> getEnteById(@ApiParam(value = "ID dell'ente", example = "1", required = true) @PathVariable @NotNull BigDecimal id) {
+	public ResponseEntity<Mono<EnteRes>> getEnteById(@PathVariable BigDecimal id) {
 		logger.info("Controller: {} Method: getEnteById", EnteController.class);
 		
 		try {		
@@ -55,7 +50,6 @@ public class EnteController {
 	}
 	
 	@GetMapping("/mapTest")
-	@ApiOperation(value = "line chart", notes = "get line chart value")
 	public Map<Integer, Double> getLineChartMapvalue() throws IOException{
 		
 		logger.info("Call: getMap");

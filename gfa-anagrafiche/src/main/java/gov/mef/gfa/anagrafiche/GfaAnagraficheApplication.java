@@ -10,11 +10,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
 @ComponentScan({"gov.mef.gfa"})
-@EnableSwagger2
+@OpenAPIDefinition(info = @Info(title = "Anagrafiche API", version = "1.0", description = "REST API del microservizio gfa-anagrafiche"))
 public class GfaAnagraficheApplication {
 
 	public static void main(String[] args) {
