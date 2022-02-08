@@ -33,7 +33,7 @@ public class BenBeneficiario implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqid-gen-beneficiario")
 	@Column(unique=true, nullable=false, precision=38)
-	private long idBeneficiario;
+	private long id;
 
 	@Column(length=100)
 	private String codiceAteco;

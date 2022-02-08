@@ -1,7 +1,5 @@
 package gov.mef.gfa.anagrafiche.controller;
 
-import java.math.BigDecimal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +16,10 @@ import gov.mef.gfa.common.bean.anagrafica.BeneficiarioRes;
 import gov.mef.gfa.common.bean.common.StatusRes;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import reactor.core.publisher.Mono;
 
-@Tag(name="Beneficiario", description = "CRUD Anagrafica Beneficiario")
+@Tag(name = "Beneficiario", description = "CRUD Anagrafica Beneficiario")
 @RestController
 @RequestMapping("/${path-name.beneficiario}/${api-tag}/v1")
 public class BeneficiarioController {
@@ -33,22 +30,29 @@ public class BeneficiarioController {
 	Logger logger = LoggerFactory.getLogger(BeneficiarioController.class);
 
 	@GetMapping("/{id}")
-	@Operation(summary = "Recupero Beneficiario per ID", description  = "Restituisce tutte le informazioni relative al beneficiario ricercato tramite ID")
-	public ResponseEntity<Mono<BeneficiarioRes>> getBeneficiarioById(
-			@Parameter(name = "id", description = "ID del beneficiario",  example = "12",  required = true) @PathVariable(value = "id") BigDecimal id) {
+	@Operation(summary = "Recupero Beneficiario per ID", description = "Restituisce tutte le informazioni relative al beneficiario ricercato tramite ID")
+	public Mono<ResponseEntity<BeneficiarioRes>> getBeneficiarioById(
+			@Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") long id) {
 
 		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 
 		try {
-			Mono<BeneficiarioRes> beneficiario = beneficiarioService.getBeneficiarioById(id.longValue());
-			HttpStatus status = beneficiario != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		    return new ResponseEntity<Mono<BeneficiarioRes>>(beneficiario, status);
+			return beneficiarioService.getBeneficiarioById(id)
+					.map(beneficiario -> new ResponseEntity<BeneficiarioRes>(beneficiario, HttpStatus.OK))
+					.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 		} catch (ServiceException e) {
 			BeneficiarioRes beneficiarioResponse = new BeneficiarioRes();
+			beneficiarioResponse.setStatus(StatusRes.error("Errore nel recuperare le informazioni", id));
 			logger.error("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 			e.printStackTrace();
-			beneficiarioResponse.setStatus(StatusRes.error("Errore nel recuperare le informazioni", id));
-			return new ResponseEntity<Mono<BeneficiarioRes>>(Mono.just(beneficiarioResponse), HttpStatus.INTERNAL_SERVER_ERROR);
+			return Mono.just(beneficiarioResponse)
+					.map(beneficiario -> new ResponseEntity<BeneficiarioRes>(beneficiario, HttpStatus.OK));
 		}
 	}
+
+//	@PutMapping("/update")
+//	public Mono<ResponseEntity<BeneficiarioRes>> updateBeneficiario(@RequestBody BeneficiarioRes beneficiario) {
+//		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
+//
+//	}
 }

@@ -29,10 +29,10 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 		
 		try {			
 			BeneficiarioRes enteRes = new BeneficiarioRes();			
-			BeneficiarioPO entePO = MapperUtils.copyProperties(beneficairioRepository.findByIdBeneficiario(id), BeneficiarioPO.class);			
+			BeneficiarioPO entePO = MapperUtils.copyProperties(beneficairioRepository.findById(id), BeneficiarioPO.class);			
 			
 			if(entePO == null)
-				return null;
+				return Mono.empty();
 			
 			enteRes.setStatus(StatusRes.success());
 			enteRes.setBeneficiario(entePO);
