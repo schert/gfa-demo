@@ -24,7 +24,7 @@ import reactor.core.publisher.Mono;
 public class BeneficiarioServiceImpl implements BeneficiarioService {
 
 	@Autowired
-	BeneficiarioDAO beneficairioRepository;
+	BeneficiarioDAO beneficiarioRepository;
 
 	private Logger logger = LoggerFactory.getLogger(BeneficiarioServiceImpl.class);
 
@@ -35,7 +35,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 
 		try {
 			BeneficiarioRes beneficiarioRes = new BeneficiarioRes();
-			BeneficiarioPO beneficiarioPO = MapperUtils.copyProperties(beneficairioRepository.findById(id),
+			BeneficiarioPO beneficiarioPO = MapperUtils.copyProperties(beneficiarioRepository.findById(id),
 					BeneficiarioPO.class);
 
 			if (beneficiarioPO == null)
@@ -59,7 +59,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 
 			beneficiarioEntity.setId(id);
 			beneficiarioRes.setBeneficiario(
-					MapperUtils.copyProperties(beneficairioRepository.save(beneficiarioEntity), BeneficiarioPO.class));
+					MapperUtils.copyProperties(beneficiarioRepository.save(beneficiarioEntity), BeneficiarioPO.class));
 			beneficiarioRes.setStatus(StatusRes.success());
 			return Mono.just(beneficiarioRes);
 		} catch (Exception e) {
@@ -72,7 +72,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	public Mono<BeneficiarioRes> deleteBeneficiario(BigDecimal id) throws ServiceException {
 		try {
 			BeneficiarioRes beneficiarioRes = new BeneficiarioRes();
-			beneficairioRepository.deleteById(id);
+			beneficiarioRepository.deleteById(id);
 			beneficiarioRes.setStatus(StatusRes.success());
 			
 			return Mono.just(beneficiarioRes);
