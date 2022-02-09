@@ -10,13 +10,13 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.joinfaces</groupId>
-    <artifactId>joinfaces-example</artifactId>
+    <groupId>gov.mef.gfa.gestionale</groupId>
+	<artifactId>gfa-gestionale</artifactId>
     <version>4.7.0-m1</version>
     <packaging>jar</packaging>
 
-    <name>JoinFaces Example</name>
-    <description>Example project for Jsf Spring Boot Starter</description>
+    <name>Portale GFA</name>
+	<description>Gestionale Portale GFA</description>
 
     <properties>
         <!-- compile library versions -->
