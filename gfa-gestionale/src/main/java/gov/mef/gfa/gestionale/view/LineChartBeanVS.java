@@ -1,5 +1,7 @@
 package gov.mef.gfa.gestionale.view;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 
@@ -14,7 +16,9 @@ import gov.mef.gfa.gestionale.service.DataService;
 
 @Component
 @ViewScoped
-public class LineChartBeanVS {
+public class LineChartBeanVS implements Serializable {
+
+	private static final long serialVersionUID = 8428907124804587443L;
 	
 	@Autowired
 	private DataService dataService;

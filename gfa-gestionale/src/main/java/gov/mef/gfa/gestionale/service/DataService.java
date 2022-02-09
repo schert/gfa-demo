@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import gov.mef.gfa.common.Routes;
@@ -14,7 +15,8 @@ import gov.mef.gfa.common.bean.anagrafica.EnteRes;
 import gov.mef.gfa.common.client.GfaClient;
 
 @Service
-public class DataService {
+@RequestScope
+public class DataService  {
 
 	private Logger logger = LoggerFactory.getLogger(DataService.class);
 

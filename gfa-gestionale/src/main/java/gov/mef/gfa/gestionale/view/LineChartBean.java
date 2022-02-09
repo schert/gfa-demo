@@ -1,5 +1,7 @@
 package gov.mef.gfa.gestionale.view;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 
 import org.primefaces.model.chart.Axis;
@@ -8,13 +10,17 @@ import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import gov.mef.gfa.common.bean.anagrafica.EntePO;
 import gov.mef.gfa.gestionale.service.DataService;
 
 @Component
-public class LineChartBean {
+@SessionScope
+public class LineChartBean implements Serializable {
 
+	private static final long serialVersionUID = 8501214126784647065L;
+	
 	@Autowired
 	private DataService dataService;
 	private LineChartModel lineModel;
