@@ -19,9 +19,6 @@ import gov.mef.gfa.gestionale.service.DataService;
 public class LineChartBeanVS implements Serializable {
 
 	private static final long serialVersionUID = 8428907124804587443L;
-	
-	@Autowired
-	private DataService dataService;
 	private LineChartModel lineModel;
 	
 	@PostConstruct
@@ -48,7 +45,7 @@ public class LineChartBeanVS implements Serializable {
 	public void chartCall() {		
 		lineModel = new LineChartModel();
 		LineChartSeries s = new LineChartSeries();
-		dataService.getLineChartData().forEach(s::set);
+		DataService.getInstance().getLineChartData().forEach(s::set);
 		s.setLabel("Population");
 
 		lineModel.addSeries(s);

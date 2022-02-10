@@ -1,6 +1,5 @@
 server.port: 8082
 pod.name: NOME_POD_TEST_SVIL  
-spring.application.name: gfa-gestionale
 gateway.host: "http://127.0.0.1:9090"
 
 joinfaces:
@@ -23,16 +22,14 @@ application-users:
     - username: nyilmaz
       password: qwe
       authorities: ROLE_USER
-      
-#logging:
-#  level:
-#    org:
-#      springframework:
-#        web:
-#          servlet:
-#            DispatcherServlet: TRACE
-#        cloud:
-#          kubernetes: DEBUG
+
+spring:
+  application.name: gfa-gestionale
+#  redis:
+#    host: localhost
+#    port: 6379
+#    timeout: 60000
+#    database: 0
 
 #db:
 #  host: 151.24.113.197
@@ -53,3 +50,13 @@ application-users:
 #spring.session.jdbc.initialize-schema: always # Database schema initialization mode.
 #spring.session.jdbc.schema: classpath:org/springframework/session/jdbc/schema-session.sql # Path to the SQL file to use to initialize the database schema.
 #spring.session.jdbc.table-name: SPRING_SESSION # Name of the database table used to store sessions.
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web:
+#          servlet:
+#            DispatcherServlet: TRACE
+#        cloud:
+#          kubernetes: DEBUG

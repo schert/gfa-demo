@@ -8,7 +8,6 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -20,9 +19,6 @@ import gov.mef.gfa.gestionale.service.DataService;
 public class LineChartBean implements Serializable {
 
 	private static final long serialVersionUID = 8501214126784647065L;
-	
-	@Autowired
-	private DataService dataService;
 	private LineChartModel lineModel;
 
 	@PostConstruct
@@ -49,7 +45,7 @@ public class LineChartBean implements Serializable {
 	public void chartCall() {
 		lineModel = new LineChartModel();
 		LineChartSeries s = new LineChartSeries();
-		dataService.getLineChartData().forEach(s::set);
+		DataService.getInstance().getLineChartData().forEach(s::set);
 		s.setLabel("Population");
 
 		lineModel.addSeries(s);
@@ -67,9 +63,9 @@ public class LineChartBean implements Serializable {
 	}
 
 	public String getEnteById(Integer id) {
-		EntePO enteRes = dataService.getEnteById(id).getEnte();
+		EntePO enteRes = DataService.getInstance().getEnteById(id).getEnte();
 		if (enteRes != null)
-			return dataService.getEnteById(id).getEnte().getIdente().toString();
+			return DataService.getInstance().getEnteById(id).getEnte().getIdente().toString();
 		
 		return "Nessun valore";
 	}

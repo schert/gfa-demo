@@ -4,24 +4,40 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import gov.mef.gfa.common.Routes;
 import gov.mef.gfa.common.bean.anagrafica.EnteRes;
 import gov.mef.gfa.common.client.GfaClient;
 
-@Service
-@RequestScope
-public class DataService  {
+public class DataService {
 
+	private static String gatewayHost;
 	private Logger logger = LoggerFactory.getLogger(DataService.class);
-
-	@Autowired
+	private static DataService instance = null;
 	private WebClient.Builder webClientBuilder;
+
+	private DataService() {
+		webClientBuilder = WebClient.builder().baseUrl(gatewayHost);
+	}
+	
+	public static DataService setGateway(String gatewayHost) {
+		DataService.setGatewayHost(gatewayHost);
+		DataService instance = DataService.getInstance();
+		return instance;
+	}
+	
+	public static void setGatewayHost(String gatewayHost) {
+		DataService.gatewayHost = gatewayHost;
+	}
+
+	public static DataService getInstance() {
+		if (instance == null) {
+			instance = new DataService();
+		}
+		return instance;
+	}
 
 	public Map<Integer, Double> getLineChartData() {
 
@@ -36,7 +52,8 @@ public class DataService  {
 
 	public EnteRes getEnteById(Integer id) {
 		logger.info("Controller: {} Method: getEnteById", DataService.class);
-		
-		return GfaClient.apiCallGetPathParams(webClientBuilder, EnteRes.class, Routes.ANAGRAFICA_ENTE, new Object[] {id});
+
+		return GfaClient.apiCallGetPathParams(webClientBuilder, EnteRes.class, Routes.ANAGRAFICA_ENTE,
+				new Object[] { id });
 	}
 }
