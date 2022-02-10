@@ -2,7 +2,7 @@ package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,11 +61,9 @@ public class BenBeneficiario implements Serializable {
 
 	@Column(length=4000)
 	private String note;
-
-	@Column(precision=38)
-	@OneToMany
-	@JoinColumn(name = "numeroAddetti", foreignKey=@ForeignKey(name = "Fk_beneficiario_numero_addetti"))
-	private List<StoricoNumeroAddetti> numeroAddetti;
+	
+	@OneToMany(mappedBy="beneficiario")
+	private Set<StoricoNumeroAddetti> storicoNumeroAddetti;
 
 	@Column(length=11)
 	private String partitaIva;
@@ -92,7 +90,7 @@ public class BenBeneficiario implements Serializable {
     @JoinColumn(name = "tipopersona", foreignKey=@ForeignKey(name = "Fk_beneficiario_tipo_persona"))
 	private TipoPersona tipopersona;
 
-	@Column(length=20, nullable = false, columnDefinition = "boolean default false")
+	@Column(name = "FLAG_CANCELLATO", nullable = false)
 	boolean flagCancellato;
 
 }
