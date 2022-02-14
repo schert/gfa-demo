@@ -51,7 +51,7 @@ public class BeneficiarioController {
 			return null;
 		}
 	}
-	
+
 	@PostMapping("/addBeneficiario")
 	@Operation(summary = "Put Beneficiario per ID", description = "Aggiorna le informazioni relative al beneficiario tramite ID, se non esiste lo crea")
 	public BeneficiarioPO postBeneficiario(@RequestBody BeneficiarioPO beneficiario, HttpServletResponse response) {
@@ -69,7 +69,8 @@ public class BeneficiarioController {
 
 	@PutMapping("/{id}")
 	@Operation(summary = "Put Beneficiario per ID", description = "Aggiorna le informazioni relative al beneficiario tramite ID, se non esiste lo crea")
-	public BeneficiarioPO putBeneficiario(@RequestBody BeneficiarioPO beneficiario, @PathVariable(value = "id") BigDecimal id, HttpServletResponse response) {
+	public BeneficiarioPO putBeneficiario(@RequestBody BeneficiarioPO beneficiario, @Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") BigDecimal id,
+			HttpServletResponse response) {
 		logger.info("Controller: {} Method: putBeneficiario", BeneficiarioController.class);
 
 		try {
@@ -84,16 +85,16 @@ public class BeneficiarioController {
 
 	@DeleteMapping("/{id}")
 	@Operation(summary = "Delete Beneficiario per ID", description = "Elimina il beneficiario tramite ID")
-	public void deleteBeneficiario(@PathVariable(value = "id") BigDecimal id, HttpServletResponse response) {
+	public void deleteBeneficiario(@Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") BigDecimal id, HttpServletResponse response) {
 		logger.info("Controller: {} Method: deleteBeneficiario", BeneficiarioController.class);
 
 		try {
-			if(beneficiarioService.deleteBeneficiario(id) == 0) {
+			if (beneficiarioService.deleteBeneficiario(id) == 0) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			} else {
 				response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			}
-				
+
 		} catch (ServiceException e) {
 			logger.error("Controller: {} Method: deleteBeneficiario", BeneficiarioController.class);
 			e.printStackTrace();
