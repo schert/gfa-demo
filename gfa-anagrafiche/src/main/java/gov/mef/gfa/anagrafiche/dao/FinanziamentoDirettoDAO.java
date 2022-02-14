@@ -10,4 +10,5 @@ import gov.mef.gfa.anagrafiche.model.FinanziamentoDiretto;
 @Repository
 public interface FinanziamentoDirettoDAO extends JpaRepository<FinanziamentoDiretto, Long> {
 	public FinanziamentoDiretto findById(BigDecimal id);
+	public Integer deleteById(BigDecimal id);
 }
