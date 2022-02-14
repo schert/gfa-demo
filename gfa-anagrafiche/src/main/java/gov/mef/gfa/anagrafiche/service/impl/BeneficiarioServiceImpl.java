@@ -28,13 +28,10 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	@Override
 	public BeneficiarioPO getBeneficiarioById(BigDecimal id) throws ServiceException {
 
-		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
+		logger.info("Service: {} Method: getBeneficiarioById", BeneficiarioController.class);
 
 		try {
-			BeneficiarioPO beneficiarioPO = MapperUtils.copyProperties(beneficiarioRepository.findById(id),
-					BeneficiarioPO.class);
-
-			return beneficiarioPO;
+			return MapperUtils.copyProperties(beneficiarioRepository.findById(id), BeneficiarioPO.class);
 		} catch (Exception e) {
 			throw new ServiceException("Errore nel recuperare le informazioni", e);
 		}
@@ -43,6 +40,9 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	@Override
 	@Transactional(rollbackOn = ServiceException.class)
 	public BeneficiarioPO putBeneficiario(BeneficiarioPO beneficiario, BigDecimal id) throws ServiceException {
+		
+		logger.info("Service: {} Method: putBeneficiario", BeneficiarioController.class);
+		
 		try {
 			BenBeneficiario beneficiarioEntity = MapperUtils.copyProperties(beneficiario, BenBeneficiario.class);
 			beneficiarioEntity.setId(id);
@@ -54,9 +54,12 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 
 	@Override
 	@Transactional(rollbackOn = ServiceException.class)
-	public BeneficiarioPO deleteBeneficiario(BigDecimal id) throws ServiceException {
+	public Integer deleteBeneficiario(BigDecimal id) throws ServiceException {
+		
+		logger.info("Service: {} Method: deleteBeneficiario", BeneficiarioController.class);
+		
 		try {
-			return MapperUtils.copyProperties(beneficiarioRepository.deleteById(id), BeneficiarioPO.class);
+			return beneficiarioRepository.deleteById(id);
 		} catch (Exception e) {
 			throw new ServiceException("Errore nell'effettuare la delete", e);
 		}
