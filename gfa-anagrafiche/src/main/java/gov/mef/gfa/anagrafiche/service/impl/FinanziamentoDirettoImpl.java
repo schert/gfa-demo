@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gov.mef.gfa.anagrafiche.controller.FinanziamentoDirettoController;
 import gov.mef.gfa.anagrafiche.dao.FinanziamentoDirettoDAO;
 import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.model.FinanziamentoDiretto;
