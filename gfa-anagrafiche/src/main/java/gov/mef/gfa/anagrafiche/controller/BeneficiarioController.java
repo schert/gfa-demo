@@ -58,11 +58,12 @@ public class BeneficiarioController {
 		logger.info("Controller: {} Method: postBeneficiario", BeneficiarioController.class);
 
 		try {
+			response.setStatus(HttpServletResponse.SC_CREATED);
 			return beneficiarioService.putBeneficiario(beneficiario, null);
 		} catch (ServiceException e) {
 			logger.error("Controller: {} Method: postBeneficiario", BeneficiarioController.class);
 			e.printStackTrace();
-			response.setStatus(HttpServletResponse.SC_CREATED);
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return null;
 		}
 	}

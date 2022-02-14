@@ -61,11 +61,12 @@ public class FinanziamentoDirettoController {
         logger.info("Controller: {} Method: postFinanziamento", FinanziamentoDirettoController.class);
 
         try {
+        	response.setStatus(HttpServletResponse.SC_CREATED);
             return finanziamentoService.putFinanziamento(finanziamento, null);
         } catch (ServiceException e) {
             logger.error("Controller: {} Method: postFinanziamento", FinanziamentoDirettoController.class);
             e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_CREATED);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return null;
         }
     }

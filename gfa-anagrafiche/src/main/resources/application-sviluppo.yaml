@@ -8,8 +8,8 @@ spring:
 # Database properties
   datasource:
     url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
-    username: NGFA
-    password: Password1
+    username: ${SECRET_USER:NGFA}
+    password: ${SECRET_PSW:Password1}
     type: oracle.ucp.jdbc.PoolDataSource
     oracleucp.min-pool-size: 1
     oracleucp.max-pool-size: 5
