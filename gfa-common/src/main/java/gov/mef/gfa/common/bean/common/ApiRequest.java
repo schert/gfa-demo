@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ApiRequest {
-	private Params params;
+	private Object params;
 	private Auth auth;
 }
