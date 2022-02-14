@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gov.mef.gfa.anagrafiche.controller.BeneficiarioController;
 import gov.mef.gfa.anagrafiche.dao.BeneficiarioDAO;
 import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
@@ -28,7 +27,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	@Override
 	public BeneficiarioPO getBeneficiarioById(BigDecimal id) throws ServiceException {
 
-		logger.info("Service: {} Method: getBeneficiarioById", BeneficiarioController.class);
+		logger.info("Service: {} Method: getBeneficiarioById", BeneficiarioServiceImpl.class);
 
 		try {
 			return MapperUtils.copyProperties(beneficiarioRepository.findById(id), BeneficiarioPO.class);
@@ -41,7 +40,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	@Transactional(rollbackOn = ServiceException.class)
 	public BeneficiarioPO putBeneficiario(BeneficiarioPO beneficiario, BigDecimal id) throws ServiceException {
 		
-		logger.info("Service: {} Method: putBeneficiario", BeneficiarioController.class);
+		logger.info("Service: {} Method: putBeneficiario", BeneficiarioServiceImpl.class);
 		
 		try {
 			BenBeneficiario beneficiarioEntity = MapperUtils.copyProperties(beneficiario, BenBeneficiario.class);
@@ -56,7 +55,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	@Transactional(rollbackOn = ServiceException.class)
 	public Integer deleteBeneficiario(BigDecimal id) throws ServiceException {
 		
-		logger.info("Service: {} Method: deleteBeneficiario", BeneficiarioController.class);
+		logger.info("Service: {} Method: deleteBeneficiario", BeneficiarioServiceImpl.class);
 		
 		try {
 			return beneficiarioRepository.deleteById(id);
