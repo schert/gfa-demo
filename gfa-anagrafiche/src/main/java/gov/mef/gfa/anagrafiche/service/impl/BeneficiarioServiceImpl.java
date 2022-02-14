@@ -15,10 +15,7 @@ import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
 import gov.mef.gfa.anagrafiche.service.BeneficiarioService;
 import gov.mef.gfa.common.bean.anagrafica.BeneficiarioPO;
-import gov.mef.gfa.common.bean.anagrafica.BeneficiarioRes;
-import gov.mef.gfa.common.bean.common.StatusRes;
 import gov.mef.gfa.common.utils.MapperUtils;
-import reactor.core.publisher.Mono;
 
 @Service
 public class BeneficiarioServiceImpl implements BeneficiarioService {
@@ -29,55 +26,39 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 	private Logger logger = LoggerFactory.getLogger(BeneficiarioServiceImpl.class);
 
 	@Override
-	public Mono<BeneficiarioRes> getBeneficiarioById(BigDecimal id) throws ServiceException {
+	public BeneficiarioPO getBeneficiarioById(BigDecimal id) throws ServiceException {
 
 		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 
 		try {
-			BeneficiarioRes beneficiarioRes = new BeneficiarioRes();
 			BeneficiarioPO beneficiarioPO = MapperUtils.copyProperties(beneficiarioRepository.findById(id),
 					BeneficiarioPO.class);
 
-			if (beneficiarioPO == null)
-				return Mono.empty();
-
-			beneficiarioRes.setStatus(StatusRes.success());
-			beneficiarioRes.setBeneficiario(beneficiarioPO);
-
-			return Mono.just(beneficiarioRes);
+			return beneficiarioPO;
 		} catch (Exception e) {
-			throw new ServiceException(e);
+			throw new ServiceException("Errore nel recuperare le informazioni", e);
 		}
 	}
 
 	@Override
-	@Transactional(rollbackOn=ServiceException.class)
-	public Mono<BeneficiarioRes> putBeneficiario(BeneficiarioPO beneficiario, BigDecimal id) throws ServiceException {
+	@Transactional(rollbackOn = ServiceException.class)
+	public BeneficiarioPO putBeneficiario(BeneficiarioPO beneficiario, BigDecimal id) throws ServiceException {
 		try {
-			BeneficiarioRes beneficiarioRes = new BeneficiarioRes();
 			BenBeneficiario beneficiarioEntity = MapperUtils.copyProperties(beneficiario, BenBeneficiario.class);
-
 			beneficiarioEntity.setId(id);
-			beneficiarioRes.setBeneficiario(
-					MapperUtils.copyProperties(beneficiarioRepository.save(beneficiarioEntity), BeneficiarioPO.class));
-			beneficiarioRes.setStatus(StatusRes.success());
-			return Mono.just(beneficiarioRes);
+			return MapperUtils.copyProperties(beneficiarioRepository.save(beneficiarioEntity), BeneficiarioPO.class);
 		} catch (Exception e) {
-			throw new ServiceException(e);
+			throw new ServiceException("Errore nell'effettuare la put", e);
 		}
 	}
-	
+
 	@Override
-	@Transactional(rollbackOn=ServiceException.class)
-	public Mono<BeneficiarioRes> deleteBeneficiario(BigDecimal id) throws ServiceException {
+	@Transactional(rollbackOn = ServiceException.class)
+	public BeneficiarioPO deleteBeneficiario(BigDecimal id) throws ServiceException {
 		try {
-			BeneficiarioRes beneficiarioRes = new BeneficiarioRes();
-			beneficiarioRepository.deleteById(id);
-			beneficiarioRes.setStatus(StatusRes.success());
-			
-			return Mono.just(beneficiarioRes);
+			return MapperUtils.copyProperties(beneficiarioRepository.deleteById(id), BeneficiarioPO.class);
 		} catch (Exception e) {
-			throw new ServiceException(e);
+			throw new ServiceException("Errore nell'effettuare la delete", e);
 		}
 	}
 }

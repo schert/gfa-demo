@@ -40,8 +40,8 @@ public class FinanziamentoDirettoController {
 
         try {
             return finanziamentoService.getFinanziamentoDirettoById(id)
-                    .map(finanziamento -> new ResponseEntity<FinanziamentoDirettoRes>(finanziamento, HttpStatus.OK))
-                    .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                    .map(ResponseEntity::ok)
+                    .defaultIfEmpty(ResponseEntity.notFound().build());
         } catch (ServiceException e) {
             logger.error("Controller: {} Method: getFinanziamentoDirettoById", FinanziamentoDirettoController.class);
             e.printStackTrace();
