@@ -30,8 +30,7 @@ public class BeneficiarioController {
 
 	@Autowired
 	private BeneficiarioServiceImpl beneficiarioService;
-
-	Logger logger = LoggerFactory.getLogger(BeneficiarioController.class);
+	private Logger logger = LoggerFactory.getLogger(BeneficiarioController.class);
 
 	@GetMapping("/{id}")
 	@Operation(summary = "Recupero Beneficiario per ID", description = "Restituisce tutte le informazioni relative al beneficiario ricercato tramite ID")

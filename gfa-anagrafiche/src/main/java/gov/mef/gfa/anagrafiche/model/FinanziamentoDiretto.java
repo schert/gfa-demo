@@ -77,6 +77,6 @@ public class FinanziamentoDiretto implements Serializable {
     @JoinColumn(name = "ID_ENTE", foreignKey = @ForeignKey(name = "Fk_utente"))
     private Ente ente;
 
-    @Column(name = "FLAG_CANCELLATO_SN", nullable = false)
-    private boolean flagCancellatoSN;
+    @Column(name = "FLAG_CANCELLATO", nullable = false)
+    private boolean flagCancellato;
 }

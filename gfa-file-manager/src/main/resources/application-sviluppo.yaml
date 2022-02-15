@@ -1,0 +1,37 @@
+db:
+  host: 151.24.113.197
+  port: 1521
+  
+spring.jackson.default-property-inclusion: NON_NULL
+  
+spring:
+# Database properties
+  datasource:
+    url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
+    username: ${SECRET_USER:NGFA}
+    password: ${SECRET_PSW:Password1}
+    type: oracle.ucp.jdbc.PoolDataSource
+    oracleucp.min-pool-size: 1
+    oracleucp.max-pool-size: 5
+    
+# JPA Hibernate properties
+  jpa:
+    hibernate:
+      #naming:
+        #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.Oracle10gDialect
+
+# Microservice properties
+spring.application.name: gfa-file-manager
+
+api-tag: api
+      
+server:
+  port: 8083
+  servlet:
+    context-path: /file-manager

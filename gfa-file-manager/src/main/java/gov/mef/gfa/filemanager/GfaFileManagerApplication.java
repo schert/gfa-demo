@@ -1,4 +1,4 @@
-package gov.mef.gfa.anagrafiche;
+package gov.mef.gfa.filemanager;
 
 import java.util.Locale;
 
@@ -12,11 +12,11 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Anagrafiche API", version = "1.0", description = "REST API del microservizio gfa-anagrafiche"))
-public class GfaAnagraficheApplication {
+@OpenAPIDefinition(info = @Info(title = "File Manager API", version = "1.0", description = "REST API del microservizio gfa-file-manager"))
+public class GfaFileManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GfaAnagraficheApplication.class, args);
+		SpringApplication.run(GfaFileManagerApplication.class, args);
 	}
 	
 	@Bean
@@ -25,4 +25,5 @@ public class GfaAnagraficheApplication {
 	    slr.setDefaultLocale(Locale.ITALIAN);
 	    return slr;
 	}
+
 }

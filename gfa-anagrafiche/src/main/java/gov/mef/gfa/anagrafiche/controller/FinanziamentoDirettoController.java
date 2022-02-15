@@ -30,8 +30,7 @@ public class FinanziamentoDirettoController {
 
     @Autowired
     private FinanziamentoDirettoImpl finanziamentoService;
-
-    Logger logger = LoggerFactory.getLogger(FinanziamentoDirettoController.class);
+    private Logger logger = LoggerFactory.getLogger(FinanziamentoDirettoController.class);
 
     @GetMapping("/{id}")
     @Operation(summary = "Recupero Finanziamento Diretto per ID", description = "Restituisce tutte le informazioni relative al finanziamento ricercato tramite ID")

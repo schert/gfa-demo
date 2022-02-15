@@ -1,7 +1,9 @@
 server:
   port: 9090
 
-uri.test: http://127.0.0.1:8081
+uri:
+  anagrafiche: http://127.0.0.1:8081
+  file-manager: http://127.0.0.1:8083
 
 spring:
   application:
@@ -10,9 +12,18 @@ spring:
     gateway:
       routes:
         - id: GFA-ANAGRAFICHE
-          uri: ${uri.test}
+          uri: ${uri.anagrafiche}
           predicates:
             - Path=/anagrafiche/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: GfaCircuitBreaker
+                fallbackuri: forward:/testFallBack
+        - id: GFA-FILE-MANAGER
+          uri: ${uri.file-manager}
+          predicates:
+            - Path=/file-manager/**
           filters:
             - name: CircuitBreaker
               args:
@@ -22,7 +33,7 @@ spring:
 resilience4j.timelimiter:
     instances:
         GfaCircuitBreaker:
-            timeoutDuration: 8s
+            timeoutDuration: 15s
             cancelRunningFuture: true
            
 logging:
