@@ -25,22 +25,23 @@ application-users:
 
 spring:
   application.name: gfa-gestionale
-#  redis:
-#    host: localhost
-#    port: 6379
-#    timeout: 60000
-#    database: 0
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 60000
+    database: 0
 
 #db:
 #  host: 151.24.113.197
 #  port: 1521
 #
 #spring:
+#  application.name: gfa-gestionale
 ## Database properties
 #  datasource:
 #    url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
-#    username: NGFA
-#    password: Password1
+#    username: ${SECRET_USER:NGFA}
+#    password: ${SECRET_PSW:Password1}
 #    type: oracle.ucp.jdbc.PoolDataSource
 #    oracleucp.min-pool-size: 1
 #    oracleucp.max-pool-size: 5

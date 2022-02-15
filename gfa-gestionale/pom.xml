@@ -105,26 +105,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-jdbc</artifactId>
-		<dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ucp</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -180,18 +160,60 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-data-redis</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.session</groupId>
+					<artifactId>spring-session-data-redis</artifactId>
+				</dependency>
+			</dependencies>
 		</profile>
 		<profile>
 			<id>collaudo</id>
 			<properties>
 				<activatedProperties>collaudo</activatedProperties>
 			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.session</groupId>
+					<artifactId>spring-session-jdbc</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.database.jdbc</groupId>
+					<artifactId>ojdbc8</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.database.jdbc</groupId>
+					<artifactId>ucp</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 		<profile>
 			<id>produzione</id>
 			<properties>
 				<activatedProperties>produzione</activatedProperties>
 			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.session</groupId>
+					<artifactId>spring-session-jdbc</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.database.jdbc</groupId>
+					<artifactId>ojdbc8</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.database.jdbc</groupId>
+					<artifactId>ucp</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 
