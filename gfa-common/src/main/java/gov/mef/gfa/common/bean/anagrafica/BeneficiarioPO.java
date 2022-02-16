@@ -4,16 +4,18 @@ import java.math.BigDecimal;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import gov.mef.gfa.common.validator.ifNotEmptyRequired;
+import gov.mef.gfa.common.eum.TipoPersonaEnum;
+import gov.mef.gfa.common.validator.IfValuesRequired;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@ifNotEmptyRequired(isNotEmpty = "partitaIva", required = {"ragioneSociale"})
-@ifNotEmptyRequired(isNotEmpty = "codiceFiscale", required = {"codiceFiscale","nominativo"})
+@IfValuesRequired(selected = "tipopersona.idTipoPersona", values={TipoPersonaEnum.Constants.FISICA}, required = {"partitaIva","ragioneSociale"})
+@IfValuesRequired(selected = "tipopersona.idTipoPersona", values={TipoPersonaEnum.Constants.GIURIDICA}, required = {"codiceFiscale","nominativo"})
 public class BeneficiarioPO {
 	private BigDecimal id;
 	@NotEmpty
@@ -35,8 +37,11 @@ public class BeneficiarioPO {
 	private String ragioneSociale;
 	@Valid
 	private RegionePO regione;
+	@Valid
 	private SettorePO settore;
 	private String telefono;
+	@Valid
+	@NotNull
+	private TipoPersonaPO tipopersona;
 	boolean flagCancellatoSn;
-
 }
