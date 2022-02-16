@@ -3,9 +3,8 @@ package gov.mef.gfa.anagrafiche.controller;
 import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,9 @@ import gov.mef.gfa.common.bean.anagrafica.BeneficiarioPO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag(name = "Beneficiario", description = "CRUD Anagrafica Beneficiario")
 @RestController
 @RequestMapping("/${path-name.beneficiario}/${api-tag}/v1")
@@ -30,13 +31,12 @@ public class BeneficiarioController {
 
 	@Autowired
 	private BeneficiarioServiceImpl beneficiarioService;
-	private Logger logger = LoggerFactory.getLogger(BeneficiarioController.class);
 
 	@GetMapping("/{id}")
 	@Operation(summary = "Recupero Beneficiario per ID", description = "Restituisce tutte le informazioni relative al beneficiario ricercato tramite ID")
 	public BeneficiarioPO getBeneficiarioById(@Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") BigDecimal id, HttpServletResponse response) {
 
-		logger.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
+		log.info("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 
 		try {
 			BeneficiarioPO beneficiario = beneficiarioService.getBeneficiarioById(id);
@@ -44,7 +44,7 @@ public class BeneficiarioController {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return beneficiario;
 		} catch (ServiceException e) {
-			logger.error("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
+			log.error("Controller: {} Method: getBeneficiarioById", BeneficiarioController.class);
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return null;
@@ -53,14 +53,14 @@ public class BeneficiarioController {
 
 	@PostMapping("/addBeneficiario")
 	@Operation(summary = "Put Beneficiario per ID", description = "Aggiorna le informazioni relative al beneficiario tramite ID, se non esiste lo crea")
-	public BeneficiarioPO postBeneficiario(@RequestBody BeneficiarioPO beneficiario, HttpServletResponse response) {
-		logger.info("Controller: {} Method: postBeneficiario", BeneficiarioController.class);
+	public BeneficiarioPO postBeneficiario(@Valid @RequestBody BeneficiarioPO beneficiario, HttpServletResponse response) {
+		log.info("Controller: {} Method: postBeneficiario", BeneficiarioController.class);
 
 		try {
 			response.setStatus(HttpServletResponse.SC_CREATED);
 			return beneficiarioService.putBeneficiario(beneficiario, null);
 		} catch (ServiceException e) {
-			logger.error("Controller: {} Method: postBeneficiario", BeneficiarioController.class);
+			log.error("Controller: {} Method: postBeneficiario", BeneficiarioController.class);
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return null;
@@ -71,12 +71,12 @@ public class BeneficiarioController {
 	@Operation(summary = "Put Beneficiario per ID", description = "Aggiorna le informazioni relative al beneficiario tramite ID, se non esiste lo crea")
 	public BeneficiarioPO putBeneficiario(@RequestBody BeneficiarioPO beneficiario, @Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") BigDecimal id,
 			HttpServletResponse response) {
-		logger.info("Controller: {} Method: putBeneficiario", BeneficiarioController.class);
+		log.info("Controller: {} Method: putBeneficiario", BeneficiarioController.class);
 
 		try {
 			return beneficiarioService.putBeneficiario(beneficiario, id);
 		} catch (ServiceException e) {
-			logger.error("Controller: {} Method: putBeneficiario", BeneficiarioController.class);
+			log.error("Controller: {} Method: putBeneficiario", BeneficiarioController.class);
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return null;
@@ -86,7 +86,7 @@ public class BeneficiarioController {
 	@DeleteMapping("/{id}")
 	@Operation(summary = "Delete Beneficiario per ID", description = "Elimina il beneficiario tramite ID")
 	public void deleteBeneficiario(@Parameter(name = "id", description = "ID del beneficiario", example = "12", required = true) @PathVariable(value = "id") BigDecimal id, HttpServletResponse response) {
-		logger.info("Controller: {} Method: deleteBeneficiario", BeneficiarioController.class);
+		log.info("Controller: {} Method: deleteBeneficiario", BeneficiarioController.class);
 
 		try {
 			if (beneficiarioService.deleteBeneficiario(id) == 0) {
@@ -96,7 +96,7 @@ public class BeneficiarioController {
 			}
 
 		} catch (ServiceException e) {
-			logger.error("Controller: {} Method: deleteBeneficiario", BeneficiarioController.class);
+			log.error("Controller: {} Method: deleteBeneficiario", BeneficiarioController.class);
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}

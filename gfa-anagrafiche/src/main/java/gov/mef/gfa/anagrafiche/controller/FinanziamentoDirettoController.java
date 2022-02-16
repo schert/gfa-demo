@@ -22,7 +22,9 @@ import gov.mef.gfa.common.bean.anagrafica.FinanziamentoDirettoPO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag(name = "Finanziamento", description = "CRUD Anagrafica Finanziamento Diretto")
 @RestController
 @RequestMapping("/${path-name.finanziamento}/${api-tag}/v1")
@@ -30,7 +32,6 @@ public class FinanziamentoDirettoController {
 
     @Autowired
     private FinanziamentoDirettoImpl finanziamentoService;
-    private Logger logger = LoggerFactory.getLogger(FinanziamentoDirettoController.class);
 
     @GetMapping("/{id}")
     @Operation(summary = "Recupero Finanziamento Diretto per ID", description = "Restituisce tutte le informazioni relative al finanziamento ricercato tramite ID")
@@ -38,7 +39,7 @@ public class FinanziamentoDirettoController {
             @Parameter(name = "id", description = "ID del finanziamento", example = "12", required = true) @PathVariable(value = "id") BigDecimal id,
             HttpServletResponse response) {
 
-        logger.info("Controller: {} Method: getFinanziamentoDirettoById", FinanziamentoDirettoController.class);
+        log.info("Controller: {} Method: getFinanziamentoDirettoById", FinanziamentoDirettoController.class);
 
         try {
             FinanziamentoDirettoPO finanziamento = finanziamentoService.getFinanziamentoDirettoById(id);
@@ -46,7 +47,7 @@ public class FinanziamentoDirettoController {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return finanziamento;
         } catch (ServiceException e) {
-            logger.error("Controller: {} Method: getFinanziamentoDirettoById", FinanziamentoDirettoController.class);
+            log.error("Controller: {} Method: getFinanziamentoDirettoById", FinanziamentoDirettoController.class);
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return null;
@@ -57,13 +58,13 @@ public class FinanziamentoDirettoController {
     @Operation(summary = "Put Finanziamento per ID", description = "Aggiorna le informazioni relative al finanziamento tramite ID, se non esiste lo crea")
     public FinanziamentoDirettoPO postFinanziamento(@RequestBody FinanziamentoDirettoPO finanziamento,
             HttpServletResponse response) {
-        logger.info("Controller: {} Method: postFinanziamento", FinanziamentoDirettoController.class);
+        log.info("Controller: {} Method: postFinanziamento", FinanziamentoDirettoController.class);
 
         try {
         	response.setStatus(HttpServletResponse.SC_CREATED);
             return finanziamentoService.putFinanziamento(finanziamento, null);
         } catch (ServiceException e) {
-            logger.error("Controller: {} Method: postFinanziamento", FinanziamentoDirettoController.class);
+            log.error("Controller: {} Method: postFinanziamento", FinanziamentoDirettoController.class);
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return null;
@@ -75,12 +76,12 @@ public class FinanziamentoDirettoController {
     public FinanziamentoDirettoPO putFinanziamento(@RequestBody FinanziamentoDirettoPO finanziamento,
             @Parameter(name = "id", description = "ID del finanziamento", example = "12", required = true) @PathVariable(value = "id") BigDecimal id,
             HttpServletResponse response) {
-        logger.info("Controller: {} Method: putFinanziamento", FinanziamentoDirettoController.class);
+        log.info("Controller: {} Method: putFinanziamento", FinanziamentoDirettoController.class);
 
         try {
             return finanziamentoService.putFinanziamento(finanziamento, id);
         } catch (ServiceException e) {
-            logger.error("Controller: {} Method: putFinanziamento", FinanziamentoDirettoController.class);
+            log.error("Controller: {} Method: putFinanziamento", FinanziamentoDirettoController.class);
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return null;
@@ -92,7 +93,7 @@ public class FinanziamentoDirettoController {
     public void deleteFinanziamento(
             @Parameter(name = "id", description = "ID del finanziamento", example = "12", required = true) @PathVariable(value = "id") BigDecimal id,
             HttpServletResponse response) {
-        logger.info("Controller: {} Method: deleteFinanziamento", FinanziamentoDirettoController.class);
+        log.info("Controller: {} Method: deleteFinanziamento", FinanziamentoDirettoController.class);
 
         try {
             if (finanziamentoService.deleteFinanziamento(id) == 0) {
@@ -102,7 +103,7 @@ public class FinanziamentoDirettoController {
             }
 
         } catch (ServiceException e) {
-            logger.error("Controller: {} Method: deleteFinanziamento", FinanziamentoDirettoController.class);
+            log.error("Controller: {} Method: deleteFinanziamento", FinanziamentoDirettoController.class);
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }

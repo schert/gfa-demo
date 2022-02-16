@@ -3,8 +3,6 @@ package gov.mef.gfa.filemanager.service.impl;
 import java.math.BigDecimal;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +15,9 @@ import gov.mef.gfa.filemanager.exception.ServiceException;
 import gov.mef.gfa.filemanager.model.Documento;
 import gov.mef.gfa.filemanager.service.DocumentaleService;
 import gov.mef.gfa.filemanager.service.DocumentoService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class DocumentoServicesImpl implements DocumentoService {
 
@@ -26,12 +26,10 @@ public class DocumentoServicesImpl implements DocumentoService {
 	@Autowired
 	DocumentaleService documentaleService;
 
-	private Logger logger = LoggerFactory.getLogger(DocumentoServicesImpl.class);
-
 	@Override
 	public DocumentoPO getDocumentoById(BigDecimal id) throws ServiceException {
 
-		logger.info("Service: {} Method: getDocumentoById", DocumentoServicesImpl.class);
+		log.info("Service: {} Method: getDocumentoById", DocumentoServicesImpl.class);
 
 		try {
 			return MapperUtils.copyProperties(documentoRepository.getDocumentoByIdDocumento(id), DocumentoPO.class);
@@ -43,7 +41,7 @@ public class DocumentoServicesImpl implements DocumentoService {
 	@Override
 	public void putDocumento(MultipartFile file, BigDecimal id) throws FileException {
 
-		logger.info("Service: {} Method: putDocumento", DocumentoServicesImpl.class);
+		log.info("Service: {} Method: putDocumento", DocumentoServicesImpl.class);
 
 		try {
 			Documento documentoEntity = new Documento();

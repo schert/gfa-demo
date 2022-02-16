@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +17,9 @@ import gov.mef.gfa.common.bean.common.StatusRes;
 import gov.mef.gfa.filemanager.exception.FileException;
 import gov.mef.gfa.filemanager.service.DocumentoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag(name = "Documento", description = "Manager Documento")
 @RestController
 @RequestMapping("/${api-tag}/v1")
@@ -27,12 +27,11 @@ public class DocumentoController {
 
 	@Autowired
 	DocumentoService documentoService;
-	private Logger logger = LoggerFactory.getLogger(DocumentoController.class);
 
 	@PostMapping("/uploadFiles")
 	public StatusRes uploadDocumenti(@RequestParam("files") MultipartFile[] files, HttpServletResponse response) {
 
-		logger.info("Controller: {} Method: getFinanziamentoDirettoById", DocumentoController.class);
+		log.info("Controller: {} Method: getFinanziamentoDirettoById", DocumentoController.class);
 		List<String> failsFileName = new ArrayList<>();
 
 		try {
