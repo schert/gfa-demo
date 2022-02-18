@@ -2,15 +2,18 @@ package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.ForeignKey;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +22,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "FINANZIAMENTO_DIRETTO")
+@SequenceGenerator(name = "seqid-gen-finanziamento", sequenceName = "FINANZIAMENTO_SEQ", allocationSize = 1)
 public class FinanziamentoDiretto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-finanziamento")
     @Column(nullable = false)
     private BigDecimal id;
 
@@ -55,10 +60,10 @@ public class FinanziamentoDiretto implements Serializable {
     private BigDecimal tassoInteresse;
 
     @Column(name = "DATA_EROGAZIONE")
-    private Timestamp dataErogazione;
+    private Date dataErogazione;
 
     @Column(name = "DATA_ADOZIONE_DELIBERA")
-    private Timestamp dataDelibera;
+    private Date dataDelibera;
 
     @ManyToOne
     @JoinColumn(name = "FORMA_GARANZIA", foreignKey = @ForeignKey(name = "Fk_forma_garanzia"))
@@ -68,10 +73,10 @@ public class FinanziamentoDiretto implements Serializable {
     private BigDecimal impoGarantito;
 
     @Column(name = "DATA_INSERIMENTO")
-    private Timestamp dataInserimento;
+    private Date dataInserimento;
 
     @Column(name = "DATA_ULTIMA_MODIFICA")
-    private Timestamp dataUltimaModifica;
+    private Date dataUltimaModifica;
 
     @ManyToOne
     @JoinColumn(name = "ID_ENTE", foreignKey = @ForeignKey(name = "Fk_utente"))
@@ -79,4 +84,8 @@ public class FinanziamentoDiretto implements Serializable {
 
     @Column(name = "FLAG_CANCELLATO", nullable = false)
     private boolean flagCancellato;
+
+    @Column(name = "ID_DOCUMENTO")
+    private BigDecimal idDoc;
+
 }
