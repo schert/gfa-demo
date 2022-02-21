@@ -1,5 +1,5 @@
 db:
-  host: 151.24.113.197
+  host: 188.152.185.98
   port: 1521
   
 spring.jackson.default-property-inclusion: NON_NULL
@@ -8,7 +8,7 @@ spring:
 # Database properties
   datasource:
     url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
-    username: ${SECRET_USER:NGFA}
+    username: ${SECRET_USER:NGFA_APPARTE}
     password: ${SECRET_PSW:Password1}
     type: oracle.ucp.jdbc.PoolDataSource
     oracleucp.min-pool-size: 1
@@ -20,6 +20,7 @@ spring:
       #naming:
         #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
+      #update none
     show-sql: true
     properties:
       hibernate:
@@ -35,6 +36,8 @@ path-name:
   regione: regione
   beneficiario: beneficiario
   finanziamento: finanziamento-diretto
+  monitoraggio: monitoraggio
+  richiestaFinanziamento: richiesta-finanziamento
       
 server:
   port: 8081
