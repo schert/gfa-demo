@@ -1,7 +1,10 @@
 package gov.mef.gfa.common.bean.anagrafica;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FinanziamentoDirettoPO {
     private BigDecimal id;
+    @Valid
     private BeneficiarioPO beneficiario;
     private BigDecimal impoFinanziamento;
     private BigDecimal probInsolvenza;
@@ -19,12 +23,13 @@ public class FinanziamentoDirettoPO {
     private BigDecimal numRate;
     private BigDecimal durataFinanziamento;
     private BigDecimal tassoInteresse;
-    private Timestamp dataErogazione;
-    private Timestamp dataDelibera;
+    private Date dataErogazione;
+    private Date dataDelibera;
     private FormaGaranziaPO formaGaranzia;
     private BigDecimal impoGarantito;
-    private Timestamp dataInserimento;
-    private Timestamp dataUltimaModifica;
+    private Date dataInserimento;
+    private Date dataUltimaModifica;
     private EntePO ente;
+    @NotNull
     private boolean flagCancellatoSN;
 }
