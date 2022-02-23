@@ -6,16 +6,16 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
-import gov.mef.gfa.common.validator.onPutValidation;
-import gov.mef.gfa.common.validator.onPostValidation;
+import gov.mef.gfa.common.validator.ReferedRequiredValidation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class EntePO {
-	@Null(groups = onPutValidation.class)
-	@NotNull(groups = onPostValidation.class)
+
+	@NotNull(groups = ReferedRequiredValidation.class)
+	@Null
 	private BigDecimal idente;
 	private String causale;
 	private String codicefiscale;

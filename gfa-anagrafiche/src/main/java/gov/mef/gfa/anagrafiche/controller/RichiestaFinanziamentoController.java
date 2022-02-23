@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.mef.gfa.anagrafiche.exception.ServiceException;
 import gov.mef.gfa.anagrafiche.service.impl.RichiestaFinanziamentoImpl;
 import gov.mef.gfa.common.bean.anagrafica.RichiestaFinanziamentoPO;
-import gov.mef.gfa.common.validator.onPostValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -57,9 +55,9 @@ public class RichiestaFinanziamentoController {
 	}
 
 	@PostMapping("/addRichiestaFinanziamento")
-	@Operation(summary = "Put Richiesta Finanziamento per ID", description = "Aggiorna le informazioni relative alla ricerca di finanziamento tramite ID, se non esiste lo crea")
+	@Operation(summary = "Post Richiesta Finanziamento per ID", description = "Aggiorna le informazioni relative alla ricerca di finanziamento tramite ID, se non esiste lo crea")
 	public RichiestaFinanziamentoPO postRichiestaFinanziamento(
-			@RequestBody @Validated(onPostValidation.class ) RichiestaFinanziamentoPO richiestaFinanziamentoPO, HttpServletResponse response) {
+			@RequestBody @Valid RichiestaFinanziamentoPO richiestaFinanziamentoPO, HttpServletResponse response) {
 		log.info("Controller: {} Method: postRichiestaFinanziamento", RichiestaFinanziamentoController.class);
 
 		try {
@@ -75,7 +73,7 @@ public class RichiestaFinanziamentoController {
 
 	@PutMapping("/{id}")
 	@Operation(summary = "Put Richiesta Finanziamento per ID", description = "Aggiorna le informazioni relative alla richiesta di richiestaFinanziamentoPO tramite ID, se non esiste lo crea")
-	public RichiestaFinanziamentoPO putRichiestaFinanziamento(@RequestBody RichiestaFinanziamentoPO richiestaFinanziamentoPO,
+	public RichiestaFinanziamentoPO putRichiestaFinanziamento(@RequestBody @Valid RichiestaFinanziamentoPO richiestaFinanziamentoPO,
 			@Parameter(name = "id", description = "ID della richiesta di finanziamento", example = "12", required = true) @PathVariable(value = "id") BigDecimal id,
 			HttpServletResponse response) {
 		log.info("Controller: {} Method: putFinanziamento", RichiestaFinanziamentoController.class);

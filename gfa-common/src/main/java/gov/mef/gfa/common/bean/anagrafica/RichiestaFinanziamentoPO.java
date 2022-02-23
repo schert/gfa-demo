@@ -5,8 +5,10 @@ import java.sql.Timestamp;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 
-import gov.mef.gfa.common.validator.onPostValidation;
+import gov.mef.gfa.common.validator.ReferedRequiredValidation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,7 +26,7 @@ public class RichiestaFinanziamentoPO {
 	private Timestamp dataEliminazione;
 	@NotNull
 	private Timestamp dataPresentazione;
-	@NotNull (groups =  onPostValidation.class)
+	@NotNull
 	private Boolean documentazioneObbligatoria;
 	private String iban;
 	private BigDecimal importoRichiesto;
@@ -34,17 +36,14 @@ public class RichiestaFinanziamentoPO {
 	private String note;
 	@Valid
 	@NotNull
+	@ConvertGroup(from=Default.class, to=ReferedRequiredValidation.class)
 	private AmbitoPO ambito;
 	@Valid
 	@NotNull
+	@ConvertGroup(from=Default.class, to=ReferedRequiredValidation.class)
 	private EntePO ente;
-	@Valid
-	@NotNull
 	private StatoRichiestaFinanziamentoPO statoRichiestaFinanziamento;
-	@Valid
-	@NotNull
 	private StatoEntePO statoEnte;
-	@NotNull
-	private boolean flagCancellatoSN;
+	private boolean flagCancellato;
 
 }
