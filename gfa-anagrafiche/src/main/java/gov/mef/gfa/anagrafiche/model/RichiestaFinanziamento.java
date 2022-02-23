@@ -33,7 +33,7 @@ public class RichiestaFinanziamento implements Serializable {
 	@Column(name = "ANNO_GESTIONE", nullable = false, precision = 4)
 	private BigDecimal annoGestione;
 
-	@Column(name = "CASUALE", length = 1000)
+	@Column(name = "CAUSALE", length = 1000)
 	private String causale;
 
 	@Column(name = "DATA_CREAZIONE", nullable = false)

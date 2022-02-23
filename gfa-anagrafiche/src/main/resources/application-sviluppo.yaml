@@ -1,19 +1,19 @@
 db:
   host: 188.152.185.98
   port: 1521
-  
+
 spring.jackson.default-property-inclusion: NON_NULL
   
 spring:
 # Database properties
   datasource:
     url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
-    username: ${SECRET_USER:NGFA_APPARTE}
+    username: ${SECRET_USER:NGFA}
     password: ${SECRET_PSW:Password1}
     type: oracle.ucp.jdbc.PoolDataSource
     oracleucp.min-pool-size: 1
     oracleucp.max-pool-size: 5
-    
+
 # JPA Hibernate properties
   jpa:
     hibernate:
@@ -26,6 +26,7 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.Oracle10gDialect
+        default_schema: ${spring.datasource.username}
 
 # Microservice properties
 spring.application.name: gfa-anagrafiche
