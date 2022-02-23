@@ -4,13 +4,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
+import gov.mef.gfa.common.validator.onPutValidation;
+import gov.mef.gfa.common.validator.onPostValidation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class EntePO {
+	@Null(groups = onPutValidation.class)
+	@NotNull(groups = onPostValidation.class)
 	private BigDecimal idente;
 	private String causale;
 	private String codicefiscale;

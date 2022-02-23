@@ -3,9 +3,10 @@ package gov.mef.gfa.anagrafiche.controller;
 import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import gov.mef.gfa.anagrafiche.exception.ServiceException;
-import gov.mef.gfa.anagrafiche.service.impl.MonitoraggioImpl;
 import gov.mef.gfa.anagrafiche.service.impl.RichiestaFinanziamentoImpl;
 import gov.mef.gfa.common.bean.anagrafica.RichiestaFinanziamentoPO;
+import gov.mef.gfa.common.validator.onPostValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -57,7 +59,7 @@ public class RichiestaFinanziamentoController {
 	@PostMapping("/addRichiestaFinanziamento")
 	@Operation(summary = "Put Richiesta Finanziamento per ID", description = "Aggiorna le informazioni relative alla ricerca di finanziamento tramite ID, se non esiste lo crea")
 	public RichiestaFinanziamentoPO postRichiestaFinanziamento(
-			@RequestBody RichiestaFinanziamentoPO richiestaFinanziamentoPO, HttpServletResponse response) {
+			@RequestBody @Validated(onPostValidation.class ) RichiestaFinanziamentoPO richiestaFinanziamentoPO, HttpServletResponse response) {
 		log.info("Controller: {} Method: postRichiestaFinanziamento", RichiestaFinanziamentoController.class);
 
 		try {

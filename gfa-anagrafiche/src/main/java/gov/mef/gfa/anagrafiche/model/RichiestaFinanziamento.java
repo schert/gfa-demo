@@ -1,13 +1,22 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * The persistent class for the RICHIESTAFINANZIAMENTO database table.
@@ -33,7 +42,7 @@ public class RichiestaFinanziamento implements Serializable {
 	@Column(name = "ANNO_GESTIONE", nullable = false, precision = 4)
 	private BigDecimal annoGestione;
 
-	@Column(name = "CASUALE", length = 1000)
+	@Column(name = "CAUSALE", length = 1000)
 	private String causale;
 
 	@Column(name = "DATA_CREAZIONE", nullable = false)
@@ -46,7 +55,7 @@ public class RichiestaFinanziamento implements Serializable {
 	private Date dataPresentazione;
 
 	@Column(name = "DOCUMENTAZIONE_OBBLIGATORIA", nullable = false)
-	private boolean documentazioneObbligatoria; // bigdecimal
+	private boolean documentazioneObbligatoria;
 
 	@Column(name = "IBAN", length = 27)
 	private String iban;
@@ -67,22 +76,23 @@ public class RichiestaFinanziamento implements Serializable {
 	private String note;	
 
 	@ManyToOne
-	@JoinColumn(name = "ID_AMBITO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_ambito"))
+	@JoinColumn(name = "ID_AMBITO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_ambito"), nullable = false)
 	private Ambito ambito;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ENTE", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_ente"))
+	@JoinColumn(name = "ID_ENTE", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_ente"), nullable = false)
 	private Ente ente;	
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_STATO_RICHIESTA_FINANZIAMENTO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato"))
+	@JoinColumn(name = "ID_STATO_RICHIESTA_FINANZIAMENTO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato") , nullable = false)
 	private StatoRichiestaFinanziamento statoRichiestaFinanziamento;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_STATO_ENTE", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato_ente"))
+	@JoinColumn(name = "ID_STATO_ENTE", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato_ente"), nullable = false)
 	private StatoEnte statoEnte;
 	
 	@Column(name = "FLAG_CANCELLATO", nullable = false)
 	private boolean flagCancellato;
-
+	
+	
 }

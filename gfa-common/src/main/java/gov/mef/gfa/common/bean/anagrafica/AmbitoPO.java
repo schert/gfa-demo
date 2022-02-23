@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.NotNull;
 
-import gov.mef.gfa.common.eum.TipoPersonaEnum;
-import gov.mef.gfa.common.validator.InList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
