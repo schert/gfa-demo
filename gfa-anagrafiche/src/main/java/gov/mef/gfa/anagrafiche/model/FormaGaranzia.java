@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 /**
  * The persistent class for the FORMA_GARANZIA database table.
  * 
@@ -18,15 +17,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name="FORMA_GARANZIA")
+@Table(name = "FORMA_GARANZIA")
 public class FormaGaranzia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false)
-	private long idformagaranzia;
+	@Column(unique = true, nullable = false)
+	private long id;
 
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
 	private String descrizione;
 
 }

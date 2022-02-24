@@ -29,6 +29,7 @@ public class FinanziamentoDirettoPO {
     private BigDecimal impoGarantito;
     private Date dataInserimento;
     private Date dataUltimaModifica;
+    @Valid
     private EntePO ente;
     @NotNull
     private boolean flagCancellatoSN;

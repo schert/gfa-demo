@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class FormaGaranziaPO {
-    private long idformagaranzia;
+    private long id;
 	private String descrizione;
 }

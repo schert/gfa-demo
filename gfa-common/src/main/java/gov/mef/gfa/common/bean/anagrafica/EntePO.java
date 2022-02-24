@@ -16,25 +16,25 @@ public class EntePO {
 
 	@NotNull(groups = ReferedRequiredValidation.class)
 	@Null
-	private BigDecimal idente;
+	private BigDecimal id;
 	private String causale;
-	private String codicefiscale;
-	private Date datacessazione;
+	private String codiceFiscale;
+	private Date dataCessazione;
 	@NotNull
-	private Date datacostituzione;
-	private Date datafusione;
-	private String emailreferente;
+	private Date dataCostituzione;
+	private Date dataFusione;
+	private String emailReferente;
 	private String fusioni;
 	private String motivazione;
-	private String nominativoreferente;
+	private String nominativoReferente;
 	private String note;
-	private String partitaiva;
+	private String partitaIva;
 	@NotNull
-	private BigDecimal progressivoregione;
+	private BigDecimal progressivoRegione;
 	@NotNull
-	private String ragionesociale;
-	private String settoreeconomico;
-	private String siglaregione;
+	private String ragioneSociale;
+	private String settoreEconomico;
+	private String siglaRegione;
 	private String slCap;
 	private ComunePO slComune;
 	private String slEmail;
@@ -57,7 +57,7 @@ public class EntePO {
 	private String soTelefono3;
 	@NotNull
 	private BigDecimal stato;
-	private String telefonoreferente;
+	private String telefonoReferente;
 	@NotNull
 	private BigDecimal tipologia;
 }
