@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class AmbitoPO {
 	@NotNull(groups = ReferedRequiredValidation.class)
 	@Null
-	public BigDecimal idambito;
-	public String descrizione;
+	private BigDecimal id;
+	private String descrizione;
 
 }

@@ -1,6 +1,7 @@
 package gov.mef.gfa.common.bean.anagrafica;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -30,7 +31,7 @@ public class BeneficiarioPO {
 	private String indirizzo;
 	private String nominativo;
 	private String note;
-	private BigDecimal numeroAddetti;
+	private Set<StoricoNumeroAddettiPO> storicoNumeroAddetti;
 	private String partitaIva;
 	@Valid
 	private ProvinciaPO provincia;
@@ -42,6 +43,6 @@ public class BeneficiarioPO {
 	private String telefono;
 	@Valid
 	@NotNull
-	private TipoPersonaPO tipopersona;
-	boolean flagCancellatoSn;
+	private TipoPersonaPO tipoPersona;
+	boolean flagCancellato;
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import gov.mef.gfa.anagrafiche.dao.BeneficiarioDAO;
 import gov.mef.gfa.anagrafiche.exception.ServiceException;
-import gov.mef.gfa.anagrafiche.model.BenBeneficiario;
+import gov.mef.gfa.anagrafiche.model.Beneficiario;
 import gov.mef.gfa.anagrafiche.service.BeneficiarioService;
 import gov.mef.gfa.common.bean.anagrafica.BeneficiarioPO;
 import gov.mef.gfa.common.utils.MapperUtils;
@@ -43,7 +43,7 @@ public class BeneficiarioServiceImpl implements BeneficiarioService {
 		logger.info("Service: {} Method: putBeneficiario", BeneficiarioServiceImpl.class);
 		
 		try {
-			BenBeneficiario beneficiarioEntity = MapperUtils.copyProperties(beneficiario, BenBeneficiario.class);
+			Beneficiario beneficiarioEntity = MapperUtils.copyProperties(beneficiario, Beneficiario.class);
 			beneficiarioEntity.setId(id);
 			return MapperUtils.copyProperties(beneficiarioRepository.save(beneficiarioEntity), BeneficiarioPO.class);
 		} catch (Exception e) {

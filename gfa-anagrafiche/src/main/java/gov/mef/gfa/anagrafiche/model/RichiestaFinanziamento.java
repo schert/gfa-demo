@@ -34,45 +34,44 @@ public class RichiestaFinanziamento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqid-gen-richiesta-finanziamento")
 	@Column(nullable = false)
-	private BigDecimal idRichiestaFinanziamento;
+	private BigDecimal id;
 
-	@Column(name = "ANNO_COMPETENZA", precision = 4)
+	@Column(precision = 4)
 	private BigDecimal annoCompetenza;
 
-	@Column(name = "ANNO_GESTIONE", nullable = false, precision = 4)
+	@Column(nullable = false, precision = 4)
 	private BigDecimal annoGestione;
 
-	@Column(name = "CAUSALE", length = 1000)
+	@Column(length = 1000)
 	private String causale;
 
-	@Column(name = "DATA_CREAZIONE", nullable = false)
+	@Column(nullable = false)
 	private Date dataCreazione;
 
-	@Column(name = "DATA_ELIMINAZIONE")
 	private Date dataEliminazione;
 
-	@Column(name = "DATA_PRESENTAZIONE", nullable = false)
+	@Column(nullable = false)
 	private Date dataPresentazione;
 
-	@Column(name = "DOCUMENTAZIONE_OBBLIGATORIA", nullable = false)
+	@Column(nullable = false)
 	private boolean documentazioneObbligatoria;
 
-	@Column(name = "IBAN", length = 27)
+	@Column(length = 27)
 	private String iban;
 
-	@Column(name = "IMPORTO_RICHIESTO", precision = 12, scale = 2)
+	@Column(precision = 12, scale = 2)
 	private BigDecimal importoRichiesto;
 
-	@Column(name = "INDIRIZZO_FILIALE", length = 100)
+	@Column(length = 100)
 	private String indirizzoFiliale;
 
-	@Column(name = "NOME_BANCA", length = 100)
+	@Column(length = 100)
 	private String nomeBanca;
 
-	@Column(name = "NOME_FILIALE", length = 30)
+	@Column(length = 30)
 	private String nomeFiliale;
 
-	@Column(name = "NOTE", length = 4000)
+	@Column(length = 4000)
 	private String note;	
 
 	@ManyToOne

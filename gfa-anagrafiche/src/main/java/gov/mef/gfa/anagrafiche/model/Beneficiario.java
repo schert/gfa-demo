@@ -29,18 +29,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="BEN_BENEFICIARIO")
 @SequenceGenerator(name = "seqid-gen-beneficiario", sequenceName = "BENEFICIARIO_SEQ", allocationSize = 1)
-public class BenBeneficiario implements Serializable {
+public class Beneficiario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "seqid-gen-beneficiario")
-	@Column(unique=true, nullable=false, precision=38)
+	@Column(name="IDBENEFICIARIO", unique=true, nullable=false, precision=38)
 	private BigDecimal id;
 
 	@Column(length=100)
 	private String codiceAteco;
 
-	@Column(length=16)
+	@Column(name="CODICEFISCALE", length=16)
 	private String codiceFiscale;
 
 	@ManyToOne
@@ -62,17 +62,20 @@ public class BenBeneficiario implements Serializable {
 	@Column(length=4000)
 	private String note;
 	
+	@Column(name="NUMEROADDETTI", precision=38)
+	private BigDecimal numeroAddetti;
+	
 	@OneToMany(mappedBy="beneficiario")
 	private Set<StoricoNumeroAddetti> storicoNumeroAddetti;
 
-	@Column(length=11)
+	@Column(name="PARTITAIVA", length=11)
 	private String partitaIva;
 
 	@ManyToOne
     @JoinColumn(name = "provincia", foreignKey=@ForeignKey(name = "Fk_beneficiario_provincia"))
 	private Provincia provincia;
 
-	@Column(length=200)
+	@Column(name="RAGIONESOCIALE", length=200)
 	private String ragioneSociale;
 
 	@ManyToOne
@@ -87,8 +90,8 @@ public class BenBeneficiario implements Serializable {
 	private String telefono;
 
 	@ManyToOne
-    @JoinColumn(name = "tipopersona", foreignKey=@ForeignKey(name = "Fk_beneficiario_tipo_persona"))
-	private TipoPersona tipopersona;
+    @JoinColumn(name = "TIPOPERSONA", foreignKey=@ForeignKey(name = "Fk_beneficiario_tipo_persona"))
+	private TipoPersona tipoPersona;
 
 	@Column(name = "FLAG_CANCELLATO", nullable = false)
 	boolean flagCancellato;

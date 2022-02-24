@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SettorePO {
 	@NotNull
-	private BigDecimal idsettore;
+	private BigDecimal idSettore;
 	private String descrizione;
 
 }

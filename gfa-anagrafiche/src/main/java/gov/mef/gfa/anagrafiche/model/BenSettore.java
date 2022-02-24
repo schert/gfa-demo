@@ -19,8 +19,8 @@ public class BenSettore  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(nullable=false)
-	private BigDecimal idsettore;
+	@Column(name="IDSETTORE", nullable=false)
+	private BigDecimal idSettore;
 	
 	@Column(length=4000)
 	private String descrizione;

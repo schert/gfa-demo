@@ -33,7 +33,7 @@ public class FinanziamentoDiretto implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "ID_BENEFICIARIO", foreignKey = @ForeignKey(name = "Fk_beneficiario"))
-    private BenBeneficiario beneficiario;
+    private Beneficiario beneficiario;
 
     @Column(name = "IMPORTO_FINANZIAMENTO", precision = 38, scale = 2)
     private BigDecimal impoFinanziamento;

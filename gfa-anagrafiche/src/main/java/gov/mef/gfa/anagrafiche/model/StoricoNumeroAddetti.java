@@ -29,7 +29,7 @@ public class StoricoNumeroAddetti {
 	
 	@ManyToOne
     @JoinColumn(name = "beneficiario", foreignKey=@ForeignKey(name = "Fk_str_num_addetti_beneficiario"))
-	public BenBeneficiario beneficiario;
+	public Beneficiario beneficiario;
 	
 	public Date dataCompetenzaDa;
 	public Date dataCompetenzaA;

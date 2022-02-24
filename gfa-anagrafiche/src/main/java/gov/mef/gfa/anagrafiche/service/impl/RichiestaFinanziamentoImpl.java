@@ -28,7 +28,7 @@ public class RichiestaFinanziamentoImpl implements RichiestaFinanziamentoService
 		log.info("Controller: {} Method: getRichiestaFinanziamentoById", RichiestaFinanziamentoImpl.class);
 
 		try {
-			return MapperUtils.copyProperties(richiestaFinanziamentoRepository.findByIdRichiestaFinanziamento(id),
+			return MapperUtils.copyProperties(richiestaFinanziamentoRepository.findById(id),
 					RichiestaFinanziamentoPO.class);
 		} catch (Exception e) {
 			throw new ServiceException("Errore nel recuperare le informazioni", e);
@@ -44,7 +44,7 @@ public class RichiestaFinanziamentoImpl implements RichiestaFinanziamentoService
 		try {
 			RichiestaFinanziamento richiestaFinanziamentoEntity = MapperUtils.copyProperties(richiestaFinanziamento,
 					RichiestaFinanziamento.class);
-			richiestaFinanziamentoEntity.setIdRichiestaFinanziamento(id);
+			richiestaFinanziamentoEntity.setId(id);
 			return MapperUtils.copyProperties(richiestaFinanziamentoRepository.save(richiestaFinanziamentoEntity),
 					RichiestaFinanziamentoPO.class);
 		} catch (Exception e) {
@@ -58,7 +58,7 @@ public class RichiestaFinanziamentoImpl implements RichiestaFinanziamentoService
 
 		log.info("Service: {} Method: deleteRichiestaFinanziamento", RichiestaFinanziamentoImpl.class);
 		try {
-			return richiestaFinanziamentoRepository.deleteByIdRichiestaFinanziamento(id);
+			return richiestaFinanziamentoRepository.deleteById(id);
 		} catch (Exception e) {
 			throw new ServiceException("Errore nell'effettuare la delete", e);
 		}

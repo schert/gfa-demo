@@ -1,7 +1,11 @@
 package gov.mef.gfa.anagrafiche.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,13 +23,13 @@ public class Regione implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(nullable=false, length=10)
-	private String codregione;
+	@Column(name="CODREGIONE", nullable=false, length=10)
+	private String codRegione;
 
-	@Column(length=255)
-	private String denoregione;
+	@Column(name="DENOREGIONE", length=255)
+	private String denoRegione;
 
-	@Column(length=3, unique = true)
-	private String siglaregione;
+	@Column(name="SIGLAREGIONE", length=3, unique = true)
+	private String siglaRegione;
 
 }

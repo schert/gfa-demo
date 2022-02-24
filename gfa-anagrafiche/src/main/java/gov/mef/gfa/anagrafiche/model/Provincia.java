@@ -19,15 +19,15 @@ public class Provincia implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(nullable=false, length=10)
-	private String codprovincia;
+	@Column(name="CODPROVINCIA", nullable=false, length=10)
+	private String codProvincia;
 
     @ManyToOne
-    @JoinColumn(name = "codregione", foreignKey=@ForeignKey(name = "Fk_provincia_regione"))
+    @JoinColumn(name = "CODREGIONE", foreignKey=@ForeignKey(name = "Fk_provincia_regione"))
 	private Regione regione;
 
-	@Column(length=255)
-	private String denoprovincia;
+	@Column(name="DENOPROVINCIA", length=255)
+	private String denoProvincia;
 
 	@Column(length=3)
 	private String sigla;

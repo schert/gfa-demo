@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProvinciaPO {
+public class ProvinciaPO {	
+	
 	@NotNull
-	private String codprovincia;
+	private String codProvincia;
 	private RegionePO regione;
-	private String denoprovincia;
+	private String denoProvincia;
 	private String sigla;
 
 }

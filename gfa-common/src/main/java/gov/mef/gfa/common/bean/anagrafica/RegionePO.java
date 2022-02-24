@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class RegionePO {
+
 	@NotNull
-	private String codregione;
-	private String denoregione;
-	private String siglaregione;
+	private String codRegione;
+	private String denoRegione;
+	private String siglaRegione;
 
 }

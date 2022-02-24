@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ComunePO{
+public class ComunePO{	
 	@NotNull
-	private String codcomune;
+	private String codComune;
 	private ProvinciaPO provincia;
-	private String denocomune;
+	private String denoComune;
 
 }

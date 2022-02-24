@@ -30,7 +30,7 @@ public class BenDeminimis implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "idbeneficiario", foreignKey=@ForeignKey(name = "Fk_ben_beneficiario"))
-	private BenBeneficiario benBeneficiario;
+	private Beneficiario benBeneficiario;
 
 	@Column(precision = 5)
 	private BigDecimal duratafinanziamento;

@@ -25,7 +25,7 @@ public class Ambito implements Serializable {
 	
 	@Id
 	@Column(nullable=false, precision=38)
-	private BigDecimal idambito;
+	private BigDecimal id;
 
 	@Column(nullable=false, length=20)
 	private String descrizione;

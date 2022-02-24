@@ -27,13 +27,13 @@ public class Comune implements Serializable {
 
 	@Id
 	@Column(nullable=false, length=10)
-	private String codcomune;
+	private String codComune;
 
 	@ManyToOne
-	@JoinColumn(name = "codprovincia", foreignKey=@ForeignKey(name = "Fk_comune_provincia"), nullable = false)
+	@JoinColumn(foreignKey=@ForeignKey(name = "Fk_comune_provincia"), nullable = false)
 	private Provincia provincia;
 
 	@Column(length=255)
-	private String denocomune;
+	private String denoComune;
 
 }

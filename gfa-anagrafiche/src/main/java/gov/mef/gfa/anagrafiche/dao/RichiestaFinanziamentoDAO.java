@@ -9,6 +9,6 @@ import gov.mef.gfa.anagrafiche.model.RichiestaFinanziamento;
 
 @Repository
 public interface RichiestaFinanziamentoDAO extends JpaRepository<RichiestaFinanziamento, Long> {
-	public RichiestaFinanziamento findByIdRichiestaFinanziamento(BigDecimal id);
-	public Integer deleteByIdRichiestaFinanziamento(BigDecimal id);
+	public RichiestaFinanziamento findById(BigDecimal id);
+	public Integer deleteById(BigDecimal id);
 }
