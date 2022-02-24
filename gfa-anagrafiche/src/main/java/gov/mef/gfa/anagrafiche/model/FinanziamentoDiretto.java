@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -59,9 +61,11 @@ public class FinanziamentoDiretto implements Serializable {
     @Column(name = "TASSO_INTERESSE_APPLICATO", precision = 4, scale = 2)
     private BigDecimal tassoInteresse;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "DATA_EROGAZIONE")
     private Date dataErogazione;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "DATA_ADOZIONE_DELIBERA")
     private Date dataDelibera;
 
@@ -72,9 +76,11 @@ public class FinanziamentoDiretto implements Serializable {
     @Column(name = "IMPORTO_GARANTITO", precision = 38, scale = 2)
     private BigDecimal impoGarantito;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "DATA_INSERIMENTO")
     private Date dataInserimento;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "DATA_ULTIMA_MODIFICA")
     private Date dataUltimaModifica;
 

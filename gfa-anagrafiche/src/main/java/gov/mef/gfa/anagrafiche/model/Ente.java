@@ -29,27 +29,27 @@ public class Ente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(nullable = false, precision = 38)
-	private BigDecimal idente;
+	@Column(nullable = false, precision = 38, name = "IDENTE")
+	private BigDecimal id;
 
 	@Column(length = 500)
 	private String causale;
 
 	@Column(length = 11)
-	private String codicefiscale;
+	private String codiceFiscale;
 
 	@Temporal(TemporalType.DATE)
-	private Date datacessazione;
+	private Date dataCessazione;
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	private Date datacostituzione;
+	private Date dataCostituzione;
 
 	@Temporal(TemporalType.DATE)
-	private Date datafusione;
+	private Date dataFusione;
 
 	@Column(length = 50)
-	private String emailreferente;
+	private String emailReferente;
 
 	@Column(length = 500)
 	private String fusioni;
@@ -58,31 +58,31 @@ public class Ente implements Serializable {
 	private String motivazione;
 
 	@Column(length = 79)
-	private String nominativoreferente;
+	private String nominativoReferente;
 
 	@Column(length = 4000)
 	private String note;
 
 	@Column(length = 11)
-	private String partitaiva;
+	private String partitaIva;
 
 	@Column(nullable = false, precision = 38)
-	private BigDecimal progressivoregione;
+	private BigDecimal progressivoRegione;
 
 	@Column(nullable = false, length = 200)
-	private String ragionesociale;
+	private String ragioneSociale;
 
 	@Column(length = 100)
-	private String settoreeconomico;
-	
+	private String settoreEconomico;
+
 	@Column(length = 3)
-	private String siglaregione;
+	private String siglaRegione;
 
 	@Column(name = "SL_CAP", length = 5)
 	private String slCap;
 
 	@ManyToOne
-	@JoinColumn(name = "SL_COMUNE", foreignKey=@ForeignKey(name = "Fk_ente_comune"))
+	@JoinColumn(name = "SL_COMUNE", foreignKey = @ForeignKey(name = "Fk_ente_comune"))
 	private Comune slComune;
 
 	@Column(name = "SL_EMAIL", length = 50)
@@ -95,13 +95,13 @@ public class Ente implements Serializable {
 	private String slIndirizzo;
 
 	@Column(name = "SL_INDIRIZZOWEB", length = 100)
-	private String slIndirizzoweb;
+	private String slIndirizzoWeb;
 
 	@Column(name = "SL_PEC", length = 50)
 	private String slPec;
 
 	@ManyToOne
-	@JoinColumn(name = "SL_PROVINCIA", foreignKey=@ForeignKey(name = "Fk_ente_provincia"))
+	@JoinColumn(name = "SL_PROVINCIA", foreignKey = @ForeignKey(name = "Fk_ente_provincia"))
 	private Provincia slProvincia;
 
 	@Column(name = "SL_TELEFONO1", nullable = false, length = 50)
@@ -117,7 +117,7 @@ public class Ente implements Serializable {
 	private String soCap;
 
 	@ManyToOne
-	@JoinColumn(name = "SO_COMUNE", foreignKey=@ForeignKey(name = "Fk_ente_comune_2"))
+	@JoinColumn(name = "SO_COMUNE", foreignKey = @ForeignKey(name = "Fk_ente_comune_2"))
 	private Comune soComune;
 
 	@Column(name = "SO_EMAIL", length = 50)
@@ -128,9 +128,9 @@ public class Ente implements Serializable {
 
 	@Column(name = "SO_INDIRIZZO", length = 100)
 	private String soIndirizzo;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "SO_PROVINCIA", foreignKey=@ForeignKey(name = "Fk_ente_provincia_2"))
+	@JoinColumn(name = "SO_PROVINCIA", foreignKey = @ForeignKey(name = "Fk_ente_provincia_2"))
 	private Provincia soProvincia;
 
 	@Column(name = "SO_TELEFONO1", length = 50)
@@ -146,7 +146,7 @@ public class Ente implements Serializable {
 	private BigDecimal stato;
 
 	@Column(length = 50)
-	private String telefonoreferente;
+	private String telefonoReferente;
 
 	@Column(nullable = false, precision = 38)
 	private BigDecimal tipologia;

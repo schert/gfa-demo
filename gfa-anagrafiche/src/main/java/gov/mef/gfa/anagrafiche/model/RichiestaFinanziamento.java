@@ -73,7 +73,7 @@ public class RichiestaFinanziamento implements Serializable {
 	private String nomeFiliale;
 
 	@Column(name = "NOTE", length = 4000)
-	private String note;	
+	private String note;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_AMBITO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_ambito"), nullable = false)
@@ -81,18 +81,17 @@ public class RichiestaFinanziamento implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTE", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_ente"), nullable = false)
-	private Ente ente;	
-	
+	private Ente ente;
+
 	@ManyToOne
-	@JoinColumn(name = "ID_STATO_RICHIESTA_FINANZIAMENTO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato") , nullable = false)
+	@JoinColumn(name = "ID_STATO_RICHIESTA_FINANZIAMENTO", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato"), nullable = false)
 	private StatoRichiestaFinanziamento statoRichiestaFinanziamento;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_STATO_ENTE", foreignKey = @ForeignKey(name = "Fk_richiesta_finanziamento_stato_ente"), nullable = false)
 	private StatoEnte statoEnte;
-	
+
 	@Column(name = "FLAG_CANCELLATO", nullable = false)
 	private boolean flagCancellato;
-	
-	
+
 }
