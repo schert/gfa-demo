@@ -9,5 +9,5 @@ import gov.mef.gfa.anagrafiche.model.Ente;
 
 @Repository
 public interface EnteDAO extends JpaRepository<Ente, Long> {
-	public Ente findByIdente(BigDecimal id);
+	public Ente findById(BigDecimal id);
 }

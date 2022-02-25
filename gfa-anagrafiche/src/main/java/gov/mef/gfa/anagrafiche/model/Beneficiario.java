@@ -60,10 +60,7 @@ public class Beneficiario implements Serializable {
 	private String nominativo;
 
 	@Column(length=4000)
-	private String note;
-	
-	@Column(name="NUMEROADDETTI", precision=38)
-	private BigDecimal numeroAddetti;
+	private String note;	
 	
 	@OneToMany(mappedBy="beneficiario")
 	private Set<StoricoNumeroAddetti> storicoNumeroAddetti;

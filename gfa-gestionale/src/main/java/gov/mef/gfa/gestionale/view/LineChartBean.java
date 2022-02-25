@@ -65,7 +65,7 @@ public class LineChartBean implements Serializable {
 	public String getEnteById(Integer id) {
 		EntePO enteRes = DataService.getInstance().getEnteById(id).getEnte();
 		if (enteRes != null)
-			return DataService.getInstance().getEnteById(id).getEnte().getIdente().toString();
+			return DataService.getInstance().getEnteById(id).getEnte().getId().toString();
 		
 		return "Nessun valore";
 	}

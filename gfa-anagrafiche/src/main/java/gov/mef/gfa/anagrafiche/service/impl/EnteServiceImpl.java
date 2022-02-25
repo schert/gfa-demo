@@ -30,7 +30,7 @@ public class EnteServiceImpl implements EnteService {
 		
 		try {			
 			EnteRes enteRes = new EnteRes();			
-			EntePO entePO = MapperUtils.copyProperties(enteRepository.findByIdente(id), EntePO.class);			
+			EntePO entePO = MapperUtils.copyProperties(enteRepository.findById(id), EntePO.class);			
 			enteRes.setEnte(entePO);
 			
 			if(entePO == null)
