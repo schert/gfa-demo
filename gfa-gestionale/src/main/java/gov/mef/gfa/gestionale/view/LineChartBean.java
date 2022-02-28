@@ -10,6 +10,7 @@ import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import gov.mef.gfa.common.bean.anagrafica.EntePO;
 import gov.mef.gfa.gestionale.service.DataService;
@@ -63,10 +64,14 @@ public class LineChartBean implements Serializable {
 	}
 
 	public String getEnteById(Integer id) {
-		EntePO enteRes = DataService.getInstance().getEnteById(id).getEnte();
-		if (enteRes != null)
-			return DataService.getInstance().getEnteById(id).getEnte().getId().toString();
-		
+		try {
+			EntePO enteRes = DataService.getInstance().getEnteById(id).getEnte();
+			if (enteRes != null)
+				return DataService.getInstance().getEnteById(id).getEnte().getId().toString();
+		} catch (WebClientResponseException ex) {
+			if (ex.getRawStatusCode() == 404)
+				return "Valore non trovato";
+		}
 		return "Nessun valore";
 	}
 

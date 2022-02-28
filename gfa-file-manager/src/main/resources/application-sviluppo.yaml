@@ -1,13 +1,14 @@
 db:
-  host: 151.24.113.197
+  host: 127.0.0.1
   port: 1521
+  url: jdbc:oracle:thin:@${db.host}:${db.port}/XEPDB1
   
 spring.jackson.default-property-inclusion: NON_NULL
   
 spring:
 # Database properties
   datasource:
-    url: jdbc:oracle:thin:@${db.host}:${db.port}/pdb1.bip.lan
+    url: ${db.url}
     username: ${SECRET_USER:NGFA}
     password: ${SECRET_PSW:Password1}
     type: oracle.ucp.jdbc.PoolDataSource
